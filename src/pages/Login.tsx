@@ -5,8 +5,7 @@ import { User, Buildings, UsersThree } from "@phosphor-icons/react";
 
 const roles: { role: UserRole; label: string; desc: string; icon: typeof User; path: string }[] = [
   { role: "investor", label: "Inversor", desc: "Explora oportunidades y gestiona tu portafolio", icon: User, path: "/" },
-  { role: "developer", label: "Developer", desc: "Publica proyectos y monitorea inversiones", icon: Buildings, path: "/developer" },
-  { role: "manager", label: "Client Manager", desc: "Gestiona clientes y personaliza la marca", icon: UsersThree, path: "/manager" },
+  { role: "developer", label: "Developer", desc: "Publica proyectos, gestiona clientes y personaliza la marca", icon: Buildings, path: "/developer" },
 ];
 
 const Login = () => {
