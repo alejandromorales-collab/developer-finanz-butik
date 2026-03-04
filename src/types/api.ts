@@ -5,7 +5,7 @@ export interface Project {
   id: string;
   title: string;
   slug: string;
-  status: "active" | "sold_out" | "coming_soon";
+  status: "active" | "sold_out" | "coming_soon" | "waiting_approval";
   category: "cash" | "lend" | "buy" | "develop";
   thumbnailUrl: string;
   images: string[];

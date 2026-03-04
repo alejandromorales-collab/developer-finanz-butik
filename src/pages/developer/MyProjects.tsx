@@ -8,6 +8,7 @@ const statusBadge: Record<string, string> = {
   active: "bg-green-100 text-green-800",
   sold_out: "bg-red-100 text-red-800",
   coming_soon: "bg-yellow-100 text-yellow-800",
+  waiting_approval: "bg-orange-100 text-orange-800",
 };
 
 const MyProjects = () => (

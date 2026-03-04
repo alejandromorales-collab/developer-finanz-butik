@@ -19,6 +19,7 @@ const statusLabels: Record<Project["status"], string> = {
   active: "Active",
   sold_out: "Sold Out",
   coming_soon: "Coming Soon",
+  waiting_approval: "Waiting Approval",
 };
 
 const ProjectCard = ({ project }: ProjectCardProps) => {
