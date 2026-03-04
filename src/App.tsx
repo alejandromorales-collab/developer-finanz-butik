@@ -15,7 +15,6 @@ import MyProjects from "./pages/developer/MyProjects";
 import UploadWizard from "./pages/developer/UploadWizard";
 import Analytics from "./pages/developer/Analytics";
 import Profile from "./pages/developer/Profile";
-import ManagerLayout from "./pages/manager/ManagerLayout";
 import Clients from "./pages/manager/Clients";
 import BrandSettings from "./pages/manager/BrandSettings";
 import Reports from "./pages/manager/Reports";
@@ -37,17 +36,13 @@ const App = () => (
             <Route path="/learn" element={<Learn />} />
             <Route path="/login" element={<Login />} />
 
-            {/* Developer Dashboard */}
+            {/* Developer Dashboard (includes Client Manager) */}
             <Route path="/developer" element={<ProtectedRoute allowedRoles={["developer"]}><DeveloperLayout /></ProtectedRoute>}>
               <Route index element={<MyProjects />} />
               <Route path="upload" element={<UploadWizard />} />
               <Route path="analytics" element={<Analytics />} />
               <Route path="profile" element={<Profile />} />
-            </Route>
-
-            {/* Manager Dashboard */}
-            <Route path="/manager" element={<ProtectedRoute allowedRoles={["manager"]}><ManagerLayout /></ProtectedRoute>}>
-              <Route index element={<Clients />} />
+              <Route path="clients" element={<Clients />} />
               <Route path="brand" element={<BrandSettings />} />
               <Route path="reports" element={<Reports />} />
             </Route>

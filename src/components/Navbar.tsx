@@ -57,19 +57,6 @@ const Navbar = () => {
               Dashboard
             </Link>
           )}
-          {isAuthenticated && user?.role === "manager" && (
-            <Link
-              to="/manager"
-              className={cn(
-                "rounded-full px-4 py-1.5 text-sm font-medium transition-colors",
-                location.pathname.startsWith("/manager")
-                  ? "bg-primary text-primary-foreground"
-                  : "text-muted-foreground hover:text-foreground"
-              )}
-            >
-              Manager
-            </Link>
-          )}
         </nav>
 
         {/* Right Actions */}

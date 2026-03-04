@@ -1,4 +1,4 @@
-import { Buildings, UploadSimple, ChartBar, UserCircle, SignOut } from "@phosphor-icons/react";
+import { Buildings, UploadSimple, ChartBar, UserCircle, SignOut, UsersThree, PaintBrush, FileText } from "@phosphor-icons/react";
 import { NavLink } from "@/components/NavLink";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -15,11 +15,17 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 
-const items = [
+const devItems = [
   { title: "My Projects", url: "/developer", icon: Buildings },
   { title: "Upload Project", url: "/developer/upload", icon: UploadSimple },
   { title: "Analytics", url: "/developer/analytics", icon: ChartBar },
   { title: "Profile / KYC", url: "/developer/profile", icon: UserCircle },
+];
+
+const managerItems = [
+  { title: "Clients", url: "/developer/clients", icon: UsersThree },
+  { title: "Brand Settings", url: "/developer/brand", icon: PaintBrush },
+  { title: "Reports", url: "/developer/reports", icon: FileText },
 ];
 
 export function DeveloperSidebar() {
@@ -44,7 +50,26 @@ export function DeveloperSidebar() {
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {items.map((item) => (
+              {devItems.map((item) => (
+                <SidebarMenuItem key={item.url}>
+                  <SidebarMenuButton asChild>
+                    <NavLink to={item.url} end className="hover:bg-muted/50" activeClassName="bg-muted text-primary font-medium">
+                      <item.icon size={18} className="mr-2 shrink-0" />
+                      {!collapsed && <span>{item.title}</span>}
+                    </NavLink>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+        <SidebarGroup>
+          <SidebarGroupLabel>
+            {!collapsed && <span>Client Manager</span>}
+          </SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {managerItems.map((item) => (
                 <SidebarMenuItem key={item.url}>
                   <SidebarMenuButton asChild>
                     <NavLink to={item.url} end className="hover:bg-muted/50" activeClassName="bg-muted text-primary font-medium">
