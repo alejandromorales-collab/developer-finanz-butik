@@ -1,21 +1,60 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { ArrowLeft, ArrowRight, Check } from "@phosphor-icons/react";
+import { toast } from "@/hooks/use-toast";
+import { mockProjects } from "@/data/mockProjects";
+import type { Project } from "@/types/api";
 
 const steps = ["Basic Info", "Financial Details", "Media & Documents", "Review"];
 
 const UploadWizard = () => {
+  const navigate = useNavigate();
   const [step, setStep] = useState(0);
   const [form, setForm] = useState({
-    title: "", category: "develop", description: "",
+    title: "", category: "develop" as Project["category"], description: "",
     minInvestment: "", interestMin: "", interestMax: "", termRange: "",
     highlights: "",
   });
 
   const update = (key: string, val: string) => setForm((f) => ({ ...f, [key]: val }));
+
+  const handleSubmit = () => {
+    const newProject: Project = {
+      id: crypto.randomUUID(),
+      title: form.title || "Untitled Project",
+      slug: (form.title || "untitled").toLowerCase().replace(/\s+/g, "-"),
+      status: "waiting_approval",
+      category: form.category,
+      thumbnailUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80",
+      images: [],
+      termRange: form.termRange || "—",
+      annualInterestRateMin: parseFloat(form.interestMin) || 0,
+      annualInterestRateMax: parseFloat(form.interestMax) || 0,
+      minInvestment: parseFloat(form.minInvestment) || 0,
+      currency: "USD",
+      description: form.description,
+      highlights: form.highlights ? form.highlights.split("\n").filter(Boolean) : [],
+      curatedBy: "The Finanz Butik Team",
+      legalSupport: true,
+      tiers: [],
+      documents: [],
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+
+    mockProjects.unshift(newProject);
+
+    toast({
+      title: "Project submitted successfully! 🎉",
+      description: "Your project is now waiting for approval.",
+    });
+
+    navigate("/developer");
+  };
 
   return (
     <div className="mx-auto max-w-2xl space-y-8">
@@ -133,7 +172,6 @@ const UploadWizard = () => {
                 </div>
               ))}
             </dl>
-            <p className="text-xs text-muted-foreground italic">This is a mock wizard — no data is saved.</p>
           </div>
         )}
       </div>
@@ -148,7 +186,7 @@ const UploadWizard = () => {
             Next <ArrowRight size={16} className="ml-1" />
           </Button>
         ) : (
-          <Button className="bg-green-600 hover:bg-green-700">
+          <Button onClick={handleSubmit}>
             <Check size={16} className="mr-1" /> Submit Project
           </Button>
         )}

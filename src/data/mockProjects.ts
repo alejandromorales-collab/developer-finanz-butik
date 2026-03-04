@@ -1,6 +1,6 @@
 import type { Project } from "@/types/api";
 
-export const mockProjects: Project[] = [
+export let mockProjects: Project[] = [
   {
     id: "1",
     title: "Villa Residencial Costa del Sol",
