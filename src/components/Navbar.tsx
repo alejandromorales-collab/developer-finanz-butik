@@ -1,6 +1,8 @@
-import { Bell, Question, User, CaretDown } from "@phosphor-icons/react";
-import { Link, useLocation } from "react-router-dom";
+import { Bell, Question, User, CaretDown, SignIn, SignOut } from "@phosphor-icons/react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/contexts/AuthContext";
+import { Button } from "@/components/ui/button";
 
 const navItems = [
   { label: "Invest", href: "/" },
@@ -10,6 +12,8 @@ const navItems = [
 
 const Navbar = () => {
   const location = useLocation();
+  const { user, isAuthenticated, logout } = useAuth();
+  const navigate = useNavigate();
 
   return (
     <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
@@ -40,6 +44,32 @@ const Navbar = () => {
               {item.label}
             </Link>
           ))}
+          {isAuthenticated && user?.role === "developer" && (
+            <Link
+              to="/developer"
+              className={cn(
+                "rounded-full px-4 py-1.5 text-sm font-medium transition-colors",
+                location.pathname.startsWith("/developer")
+                  ? "bg-primary text-primary-foreground"
+                  : "text-muted-foreground hover:text-foreground"
+              )}
+            >
+              Dashboard
+            </Link>
+          )}
+          {isAuthenticated && user?.role === "manager" && (
+            <Link
+              to="/manager"
+              className={cn(
+                "rounded-full px-4 py-1.5 text-sm font-medium transition-colors",
+                location.pathname.startsWith("/manager")
+                  ? "bg-primary text-primary-foreground"
+                  : "text-muted-foreground hover:text-foreground"
+              )}
+            >
+              Manager
+            </Link>
+          )}
         </nav>
 
         {/* Right Actions */}
@@ -50,9 +80,22 @@ const Navbar = () => {
           <button className="rounded-full p-2 text-muted-foreground transition-colors hover:text-foreground">
             <Bell size={20} />
           </button>
-          <button className="rounded-full p-2 text-muted-foreground transition-colors hover:text-foreground">
-            <User size={20} />
-          </button>
+          {isAuthenticated ? (
+            <>
+              <span className="hidden text-xs text-muted-foreground sm:block">{user?.name}</span>
+              <button
+                onClick={() => { logout(); navigate("/"); }}
+                className="rounded-full p-2 text-muted-foreground transition-colors hover:text-foreground"
+                title="Logout"
+              >
+                <SignOut size={20} />
+              </button>
+            </>
+          ) : (
+            <Button variant="outline" size="sm" asChild>
+              <Link to="/login"><SignIn size={16} className="mr-1" /> Login</Link>
+            </Button>
+          )}
           <button className="flex items-center gap-1 text-sm text-muted-foreground">
             EN <CaretDown size={14} />
           </button>
