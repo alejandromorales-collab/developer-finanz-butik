@@ -4,11 +4,8 @@ import { cn } from "@/lib/utils";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 
-const publicNavItems = [
-  { label: "Invest", href: "/" },
-];
-
 const authNavItems = [
+  { label: "Invest", href: "/" },
   { label: "Portfolio", href: "/portfolio" },
   { label: "Learn", href: "/learn" },
 ];
@@ -33,20 +30,6 @@ const Navbar = () => {
 
         {/* Nav Links */}
         <nav className="hidden items-center gap-1 md:flex">
-          {publicNavItems.map((item) => (
-            <Link
-              key={item.href}
-              to={item.href}
-              className={cn(
-                "rounded-full px-4 py-1.5 text-sm font-medium transition-colors",
-                location.pathname === item.href
-                  ? "bg-primary text-primary-foreground"
-                  : "text-muted-foreground hover:text-foreground"
-              )}
-            >
-              {item.label}
-            </Link>
-          ))}
           {isAuthenticated && authNavItems.map((item) => (
             <Link
               key={item.href}
