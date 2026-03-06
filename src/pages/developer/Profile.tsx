@@ -18,7 +18,9 @@ const Profile = () => {
   return (
     <div className="mx-auto max-w-2xl space-y-8">
       <div>
-        <h1 className="font-heading text-2xl font-bold text-foreground">Profile / KYC</h1>
+        <h1 className="font-heading text-2xl font-bold text-foreground">Profile
+
+        </h1>
         <p className="text-sm text-muted-foreground">Manage your developer profile and verification documents</p>
       </div>
 
@@ -68,14 +70,12 @@ const Profile = () => {
       <section className="rounded-xl border border-border bg-card p-6 space-y-4">
         <h2 className="font-heading text-lg font-semibold text-foreground">KYC Documents</h2>
         <p className="text-xs text-muted-foreground">Upload required documents for verification</p>
-        {["Government ID (front & back)", "Proof of Address", "Company Registration Certificate", "Financial Statements"].map((doc) => (
-          <div key={doc} className="flex items-center justify-between rounded-lg border border-dashed border-border p-3">
+        {["Government ID (front & back)", "Proof of Address", "Company Registration Certificate", "Financial Statements"].map((doc) => <div key={doc} className="flex items-center justify-between rounded-lg border border-dashed border-border p-3">
             <span className="text-sm text-foreground">{doc}</span>
             <Button variant="outline" size="sm">
               <UploadSimple size={14} className="mr-1" /> Upload
             </Button>
-          </div>
-        ))}
+          </div>)}
       </section>
 
       <div className="flex justify-end">
@@ -83,8 +83,8 @@ const Profile = () => {
           {saved ? <><Check size={16} className="mr-1" /> Saved!</> : "Save Changes"}
         </Button>
       </div>
-    </div>
-  );
+    </div>);
+
 };
 
 export default Profile;
