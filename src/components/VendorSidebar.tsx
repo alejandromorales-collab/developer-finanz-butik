@@ -19,6 +19,7 @@ import {
 const mainItems = [
   { title: "Dashboard", url: "/vendor", icon: Briefcase },
   { title: "Create Service", url: "/vendor/new-service", icon: PlusCircle },
+  { title: "Messages", url: "/vendor/messages", icon: EnvelopeSimple },
   { title: "Analytics", url: "/vendor/analytics", icon: ChartBar },
 ];
 

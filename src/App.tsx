@@ -58,6 +58,8 @@ const App = () => (
             <Route path="/vendor" element={<ProtectedRoute allowedRoles={["vendor"]}><VendorLayout /></ProtectedRoute>}>
               <Route index element={<VendorDashboard />} />
               <Route path="new-service" element={<CreateService />} />
+              <Route path="messages" element={<MessagingHub />} />
+              <Route path="messages/:id" element={<MessageThread />} />
               <Route path="analytics" element={<VendorAnalytics />} />
               <Route path="profile" element={<VendorProfileSetup />} />
             </Route>
