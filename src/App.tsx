@@ -18,6 +18,11 @@ import Profile from "./pages/developer/Profile";
 import Clients from "./pages/manager/Clients";
 import BrandSettings from "./pages/manager/BrandSettings";
 import Reports from "./pages/manager/Reports";
+import VendorLayout from "./pages/vendor/VendorLayout";
+import VendorDashboard from "./pages/vendor/VendorDashboard";
+import CreateService from "./pages/vendor/CreateService";
+import VendorAnalytics from "./pages/vendor/VendorAnalytics";
+import VendorProfileSetup from "./pages/vendor/VendorProfileSetup";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -45,6 +50,14 @@ const App = () => (
               <Route path="clients" element={<Clients />} />
               <Route path="brand" element={<BrandSettings />} />
               <Route path="reports" element={<Reports />} />
+            </Route>
+
+            {/* Vendor Portal */}
+            <Route path="/vendor" element={<ProtectedRoute allowedRoles={["vendor"]}><VendorLayout /></ProtectedRoute>}>
+              <Route index element={<VendorDashboard />} />
+              <Route path="new-service" element={<CreateService />} />
+              <Route path="analytics" element={<VendorAnalytics />} />
+              <Route path="profile" element={<VendorProfileSetup />} />
             </Route>
 
             <Route path="*" element={<NotFound />} />
