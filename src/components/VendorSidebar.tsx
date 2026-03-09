@@ -38,12 +38,7 @@ export function VendorSidebar() {
         <SidebarGroup>
           <SidebarGroupLabel>
             {!collapsed && (
-              <span className="flex items-center gap-2">
-                <div className="flex h-6 w-6 items-center justify-center rounded bg-primary">
-                  <span className="text-[10px] font-bold text-primary-foreground">FB</span>
-                </div>
-                Vendor Portal
-              </span>
+              <img src={finanzbutikLogo} alt="FinanzButik" className="h-6" />
             )}
           </SidebarGroupLabel>
           <SidebarGroupContent>
