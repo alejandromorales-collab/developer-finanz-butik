@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,14 +10,23 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { ArrowLeft, ArrowRight, CloudArrowUp, FilePdf, CheckCircle } from "@phosphor-icons/react";
 import { useToast } from "@/hooks/use-toast";
 import { mockVendorServices } from "@/data/mockVendor";
+import { api } from "@/services/api";
 
-const categories = ["Legal Incorporation and Filings", "Accounting, Taxes, and Compliance", "Financing and Insurance", "Strategy and Advisory", "Complementary Services"];
-const pricingModels = ["Fixed Fee", "Hourly", "Retainer", "Success Fee"];
 
 const CreateService = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [step, setStep] = useState(1);
+
+  const { data: categories = [] } = useQuery({
+    queryKey: ["categories"],
+    queryFn: () => api.getCategories(),
+  });
+
+  const { data: pricingModels = [] } = useQuery({
+    queryKey: ["pricings"],
+    queryFn: () => api.getPricings(),
+  });
 
   // Step 1
   const [title, setTitle] = useState("");
@@ -94,7 +104,7 @@ const CreateService = () => {
                 <Select value={category} onValueChange={setCategory}>
                   <SelectTrigger><SelectValue placeholder="Select category" /></SelectTrigger>
                   <SelectContent>
-                    {categories.map((c) => <SelectItem key={c} value={c}>{c}</SelectItem>)}
+                    {categories.map((c) => <SelectItem key={c._id} value={c._id}>{c.name}</SelectItem>)}
                   </SelectContent>
                 </Select>
               </div>
@@ -103,7 +113,7 @@ const CreateService = () => {
                 <Select value={pricingModel} onValueChange={setPricingModel}>
                   <SelectTrigger><SelectValue placeholder="Select model" /></SelectTrigger>
                   <SelectContent>
-                    {pricingModels.map((p) => <SelectItem key={p} value={p}>{p}</SelectItem>)}
+                    {pricingModels.map((p) => <SelectItem key={p._id} value={p._id}>{p.name}</SelectItem>)}
                   </SelectContent>
                 </Select>
               </div>

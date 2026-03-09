@@ -64,6 +64,23 @@ export interface ProjectFilters {
   search?: string;
 }
 
+// ===== Finanz Backend Types =====
+
+export interface HealthResponse {
+  status: string;
+  database: string;
+}
+
+export interface CategoryResponse {
+  _id: string;
+  name: string;
+}
+
+export interface PricingResponse {
+  _id: string;
+  name: string;
+}
+
 // ===== API Service Interface =====
 
 export interface ApiConfig {

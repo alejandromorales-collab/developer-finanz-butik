@@ -1,4 +1,4 @@
-import type { ApiConfig, PaginatedResponse, Project, ProjectFilters, SimulatorResult } from "@/types/api";
+import type { ApiConfig, CategoryResponse, HealthResponse, PaginatedResponse, PricingResponse, Project, ProjectFilters, SimulatorResult } from "@/types/api";
 
 // Configure your backend API base URL here
 const DEFAULT_CONFIG: ApiConfig = {
@@ -39,6 +39,21 @@ class ApiService {
 
   async getProject(slug: string): Promise<Project> {
     return this.request(`/projects/${slug}`);
+  }
+
+  // Health
+  async health(): Promise<HealthResponse> {
+    return this.request("/health");
+  }
+
+  // Categories
+  async getCategories(): Promise<CategoryResponse[]> {
+    return this.request("/categories");
+  }
+
+  // Pricings
+  async getPricings(): Promise<PricingResponse[]> {
+    return this.request("/pricings");
   }
 
   // Simulator
