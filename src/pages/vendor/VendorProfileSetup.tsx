@@ -99,7 +99,7 @@ const VendorProfileSetup = () => {
                   <Input id="firmName" value={firmName} onChange={(e) => setFirmName(e.target.value)} placeholder="Your firm or business name" />
                 </div>
                 <div className="space-y-2">
-                  <Label>Category *</Label>
+                  <Label>Category <span className="text-[hsl(var(--text-error))]">*</span></Label>
                   <Select value={category} onValueChange={setCategory}>
                     <SelectTrigger><SelectValue placeholder="Select category" /></SelectTrigger>
                     <SelectContent>
