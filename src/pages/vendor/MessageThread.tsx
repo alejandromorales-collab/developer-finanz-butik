@@ -64,7 +64,7 @@ const MessageThread = () => {
         {/* Main Thread */}
         <div className="flex-1 min-w-0 space-y-4">
           {/* Header */}
-          <div className="space-y-2">
+          <div className="space-y-3 pb-4 border-b border-border">
             <button
               onClick={() => navigate("/vendor/messages")}
               className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
