@@ -23,6 +23,8 @@ import VendorDashboard from "./pages/vendor/VendorDashboard";
 import CreateService from "./pages/vendor/CreateService";
 import VendorAnalytics from "./pages/vendor/VendorAnalytics";
 import VendorProfileSetup from "./pages/vendor/VendorProfileSetup";
+import MessagingHub from "./pages/vendor/MessagingHub";
+import MessageThread from "./pages/vendor/MessageThread";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
