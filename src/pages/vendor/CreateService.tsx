@@ -10,7 +10,7 @@ import { ArrowLeft, ArrowRight, CloudArrowUp, FilePdf, CheckCircle } from "@phos
 import { useToast } from "@/hooks/use-toast";
 import { mockVendorServices } from "@/data/mockVendor";
 
-const categories = ["Legal", "Accounting", "Taxes", "Compliance", "Insurance", "Consulting", "Valuation"];
+const categories = ["Legal Incorporation and Filings", "Accounting, Taxes, and Compliance", "Financing and Insurance", "Strategy and Advisory", "Complementary Services"];
 const pricingModels = ["Fixed Fee", "Hourly", "Retainer", "Success Fee"];
 
 const CreateService = () => {

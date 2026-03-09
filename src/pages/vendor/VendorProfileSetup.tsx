@@ -13,7 +13,7 @@ import { CheckCircle, Clock, Shield, Bell, Bank, FileText, IdentificationCard, C
 import { useToast } from "@/hooks/use-toast";
 import { vendorProfile } from "@/data/mockVendor";
 
-const categories = ["Legal", "Accounting", "Taxes", "Compliance", "Insurance", "Consulting", "Valuation"];
+const categories = ["Legal Incorporation and Filings", "Accounting, Taxes, and Compliance", "Financing and Insurance", "Strategy and Advisory", "Complementary Services"];
 
 const VendorProfileSetup = () => {
   const { toast } = useToast();
