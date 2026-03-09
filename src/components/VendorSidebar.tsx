@@ -1,4 +1,4 @@
-import { Briefcase, PlusCircle, ChartBar, UserCircle, SignOut, Gear } from "@phosphor-icons/react";
+import { Briefcase, PlusCircle, ChartBar, UserCircle, SignOut, Gear, EnvelopeSimple } from "@phosphor-icons/react";
 import finanzbutikLogo from "@/assets/finanzbutik-logo.png";
 import { NavLink } from "@/components/NavLink";
 import { useAuth } from "@/contexts/AuthContext";
