@@ -182,7 +182,7 @@ const VendorProfileSetup = () => {
 
         {/* ─── Notifications ─── */}
         <TabsContent value="notifications">
-          <Card>
+          <Card className="border-0 shadow-none">
             <CardHeader>
               <CardTitle className="text-base">Notification Preferences</CardTitle>
               <CardDescription>Control which alerts you receive</CardDescription>
