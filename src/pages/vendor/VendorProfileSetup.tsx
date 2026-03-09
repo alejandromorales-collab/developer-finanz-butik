@@ -95,11 +95,11 @@ const VendorProfileSetup = () => {
             <CardContent className="space-y-5">
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="space-y-2">
-                  <Label htmlFor="firmName">Firm Name *</Label>
+                  <Label htmlFor="firmName">Firm Name <span className="text-[hsl(var(--text-error))]">*</span></Label>
                   <Input id="firmName" value={firmName} onChange={(e) => setFirmName(e.target.value)} placeholder="Your firm or business name" />
                 </div>
                 <div className="space-y-2">
-                  <Label>Category *</Label>
+                  <Label>Category <span className="text-[hsl(var(--text-error))]">*</span></Label>
                   <Select value={category} onValueChange={setCategory}>
                     <SelectTrigger><SelectValue placeholder="Select category" /></SelectTrigger>
                     <SelectContent>
