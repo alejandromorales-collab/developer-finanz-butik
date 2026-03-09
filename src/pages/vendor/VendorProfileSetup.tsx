@@ -9,7 +9,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { CheckCircle, Clock, Shield, Bell, Bank, FileText, IdentificationCard } from "@phosphor-icons/react";
+import { CheckCircle, Clock, Shield, Bell, Bank, FileText, IdentificationCard, Camera } from "@phosphor-icons/react";
 import { useToast } from "@/hooks/use-toast";
 import { vendorProfile } from "@/data/mockVendor";
 
