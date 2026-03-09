@@ -38,22 +38,22 @@ const VendorDashboard = () => {
         <p className="mt-1 text-sm text-muted-foreground">Manage your professional services portfolio</p>
       </div>
 
-      {isEmpty && (
-        <div className="grid gap-4 sm:grid-cols-2">
-          <Card className="border-dashed border-primary/30 hover:border-primary/60 transition-colors">
-            <CardContent className="flex items-center gap-4 p-5">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10">
-                <UserCircle size={24} className="text-primary" />
-              </div>
-              <div className="flex-1">
-                <p className="font-heading font-semibold text-foreground text-sm">Set up Vendor Profile</p>
-                <p className="text-xs text-muted-foreground">Complete your professional identity</p>
-              </div>
-              <Button size="sm" variant="ghost" asChild>
-                <Link to="/vendor/profile"><ArrowRight size={16} /></Link>
-              </Button>
-            </CardContent>
-          </Card>
+      <div className={`grid gap-4 ${isEmpty ? 'sm:grid-cols-2' : 'sm:grid-cols-1 max-w-md'}`}>
+        <Card className="border-dashed border-primary/30 hover:border-primary/60 transition-colors">
+          <CardContent className="flex items-center gap-4 p-5">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+              <UserCircle size={24} className="text-primary" />
+            </div>
+            <div className="flex-1">
+              <p className="font-heading font-semibold text-foreground text-sm">Set up Vendor Profile</p>
+              <p className="text-xs text-muted-foreground">Complete your professional identity</p>
+            </div>
+            <Button size="sm" variant="ghost" asChild>
+              <Link to="/vendor/profile"><ArrowRight size={16} /></Link>
+            </Button>
+          </CardContent>
+        </Card>
+        {isEmpty && (
           <Card className="border-dashed border-primary/30 hover:border-primary/60 transition-colors">
             <CardContent className="flex items-center gap-4 p-5">
               <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10">
@@ -68,8 +68,8 @@ const VendorDashboard = () => {
               </Button>
             </CardContent>
           </Card>
-        </div>
-      )}
+        )}
+      </div>
 
       {/* Service List */}
       <div>
