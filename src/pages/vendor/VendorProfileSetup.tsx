@@ -208,7 +208,7 @@ const VendorProfileSetup = () => {
 
         {/* ─── Agreement Records ─── */}
         <TabsContent value="agreements">
-          <Card>
+          <Card className="border-0 shadow-none">
             <CardHeader>
               <CardTitle className="text-base">Agreement Records</CardTitle>
               <CardDescription>Your signed contracts and terms</CardDescription>
