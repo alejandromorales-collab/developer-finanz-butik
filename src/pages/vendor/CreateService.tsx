@@ -107,7 +107,7 @@ const CreateService = () => {
                 <Select value={category} onValueChange={setCategory}>
                   <SelectTrigger><SelectValue placeholder="Select category" /></SelectTrigger>
                   <SelectContent>
-                    {categories.map((c) => <SelectItem key={c._id} value={c._id}>{c.name}</SelectItem>)}
+                    {categories.map((c) => <SelectItem key={c._id} value={c.name}>{c.name}</SelectItem>)}
                   </SelectContent>
                 </Select>
               </div>
@@ -116,7 +116,7 @@ const CreateService = () => {
                 <Select value={pricingModel} onValueChange={setPricingModel}>
                   <SelectTrigger><SelectValue placeholder="Select model" /></SelectTrigger>
                   <SelectContent>
-                    {pricingModels.map((p) => <SelectItem key={p._id} value={p._id}>{p.name}</SelectItem>)}
+                    {pricingModels.map((p) => <SelectItem key={p._id} value={p.name}>{p.name}</SelectItem>)}
                   </SelectContent>
                 </Select>
               </div>

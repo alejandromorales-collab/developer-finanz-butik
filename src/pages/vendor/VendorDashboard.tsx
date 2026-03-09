@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import { Briefcase, PlusCircle, UserCircle, Sparkle, ArrowRight, Clock, CheckCircle, XCircle } from "@phosphor-icons/react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { mockVendorServices, type VendorService, type ServiceStatus } from "@/data/mockVendor";
+import { type ServiceStatus } from "@/data/mockVendor";
+import { api } from "@/services/api";
 
 const statusConfig: Record<ServiceStatus, { label: string; className: string; icon: typeof Clock }> = {
   pending_approval: { label: "Pending Approval", className: "bg-amber-100 text-amber-800 border-amber-200", icon: Clock },
@@ -13,11 +15,14 @@ const statusConfig: Record<ServiceStatus, { label: string; className: string; ic
 };
 
 const VendorDashboard = () => {
-  const [services, setServices] = useState<VendorService[]>([]);
   const [showOnboarding, setShowOnboarding] = useState(false);
 
+  const { data: services = [] } = useQuery({
+    queryKey: ["vendors"],
+    queryFn: () => api.getVendors(),
+  });
+
   useEffect(() => {
-    setServices([...mockVendorServices]);
     const hasVisited = sessionStorage.getItem("vendor_onboarded");
     if (!hasVisited) {
       setShowOnboarding(true);
@@ -94,10 +99,10 @@ const VendorDashboard = () => {
         ) : (
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((s) => {
-              const cfg = statusConfig[s.status];
+              const cfg = statusConfig[s.status as ServiceStatus] ?? statusConfig.inactive;
               const Icon = cfg.icon;
               return (
-                <Card key={s.id} className="border-0 shadow-none hover:shadow-md transition-shadow">
+                <Card key={s._id} className="border-0 shadow-none hover:shadow-md transition-shadow">
                   <CardHeader className="pb-3">
                     <div className="flex items-start justify-between gap-2">
                       <CardTitle className="text-sm font-semibold leading-snug">{s.title}</CardTitle>
