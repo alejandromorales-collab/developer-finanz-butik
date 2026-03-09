@@ -81,6 +81,43 @@ export interface PricingResponse {
   name: string;
 }
 
+export interface VendorResponse {
+  _id: string;
+  "id-vendor": string;
+  title: string;
+  description: string;
+  category: string;
+  pricingModel: string;
+  fee: number;
+  currency: string;
+  status: string;
+  views: number;
+  createdAt: string;
+}
+
+export interface VendorCreate {
+  "id-vendor": string;
+  title: string;
+  description: string;
+  category: string;
+  pricingModel: string;
+  fee: number;
+  currency: string;
+  status: string;
+  views?: number;
+  createdAt: string;
+}
+
+export interface VendorUpdate {
+  title?: string | null;
+  description?: string | null;
+  category?: string | null;
+  pricingModel?: string | null;
+  fee?: number | null;
+  currency?: string | null;
+  status?: string | null;
+}
+
 // ===== API Service Interface =====
 
 export interface ApiConfig {

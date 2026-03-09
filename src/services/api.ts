@@ -1,4 +1,4 @@
-import type { ApiConfig, CategoryResponse, HealthResponse, PaginatedResponse, PricingResponse, Project, ProjectFilters, SimulatorResult } from "@/types/api";
+import type { ApiConfig, CategoryResponse, HealthResponse, PaginatedResponse, PricingResponse, Project, ProjectFilters, SimulatorResult, VendorCreate, VendorResponse, VendorUpdate } from "@/types/api";
 
 // Configure your backend API base URL here
 const DEFAULT_CONFIG: ApiConfig = {
@@ -54,6 +54,27 @@ class ApiService {
   // Pricings
   async getPricings(): Promise<PricingResponse[]> {
     return this.request("/pricings");
+  }
+
+  // Vendors
+  async getVendors(): Promise<VendorResponse[]> {
+    return this.request("/vendors");
+  }
+
+  async getVendor(idVendor: string): Promise<VendorResponse> {
+    return this.request(`/vendors/${idVendor}`);
+  }
+
+  async createVendor(body: VendorCreate): Promise<VendorResponse> {
+    return this.request("/vendors", { method: "POST", body: JSON.stringify(body) });
+  }
+
+  async updateVendor(idVendor: string, body: VendorUpdate): Promise<VendorResponse> {
+    return this.request(`/vendors/${idVendor}`, { method: "PATCH", body: JSON.stringify(body) });
+  }
+
+  async deleteVendor(idVendor: string): Promise<void> {
+    return this.request(`/vendors/${idVendor}`, { method: "DELETE" });
   }
 
   // Simulator

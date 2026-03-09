@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,7 +9,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ArrowLeft, ArrowRight, CloudArrowUp, FilePdf, CheckCircle } from "@phosphor-icons/react";
 import { useToast } from "@/hooks/use-toast";
-import { mockVendorServices } from "@/data/mockVendor";
 import { api } from "@/services/api";
 
 
@@ -41,30 +40,34 @@ const CreateService = () => {
 
   const canAdvance = title.trim() && description.trim() && category && pricingModel && fee;
 
-  const handleSubmit = () => {
-    if (!canAdvance) return;
-
-    const newService = {
-      id: `vs-${Date.now()}`,
+  const { mutate: submitService, isPending } = useMutation({
+    mutationFn: () => api.createVendor({
+      "id-vendor": `vs-${Date.now()}`,
       title: title.trim(),
       description: description.trim(),
       category,
       pricingModel,
       fee: parseFloat(fee),
       currency: "USD",
-      status: "pending_approval" as const,
+      status: "pending_approval",
       views: 0,
       createdAt: new Date().toISOString().slice(0, 10),
-    };
+    }),
+    onSuccess: () => {
+      toast({
+        title: "Service submitted!",
+        description: "Your service is pending admin approval. You'll be notified once it's active.",
+      });
+      navigate("/vendor");
+    },
+    onError: () => {
+      toast({ title: "Error", description: "Could not submit the service. Please try again.", variant: "destructive" });
+    },
+  });
 
-    mockVendorServices.unshift(newService);
-
-    toast({
-      title: "Service submitted!",
-      description: "Your service is pending admin approval. You'll be notified once it's active.",
-    });
-
-    navigate("/vendor");
+  const handleSubmit = () => {
+    if (!canAdvance) return;
+    submitService();
   };
 
   return (
@@ -177,8 +180,8 @@ const CreateService = () => {
               <Button variant="outline" onClick={() => setStep(1)}>
                 <ArrowLeft size={16} className="mr-1" /> Back
               </Button>
-              <Button onClick={handleSubmit}>
-                <CheckCircle size={16} className="mr-1" /> Submit for Approval
+              <Button onClick={handleSubmit} disabled={isPending}>
+                <CheckCircle size={16} className="mr-1" /> {isPending ? "Submitting…" : "Submit for Approval"}
               </Button>
             </div>
           </CardContent>
