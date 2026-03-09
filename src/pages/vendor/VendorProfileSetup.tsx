@@ -23,6 +23,16 @@ const VendorProfileSetup = () => {
   const [taxId, setTaxId] = useState(vendorProfile.taxId);
   const [license, setLicense] = useState(vendorProfile.licenseNumber);
   const [termsAccepted, setTermsAccepted] = useState(true);
+  const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
+
+  const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => setAvatarPreview(reader.result as string);
+      reader.readAsDataURL(file);
+    }
+  };
 
   // Notification toggles
   const [notifMessages, setNotifMessages] = useState(true);
