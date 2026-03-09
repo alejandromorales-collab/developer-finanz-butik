@@ -209,3 +209,101 @@
 ---
 
 **Total: 6 Modules · 14 EPICs · 47 User Stories · 34 API Endpoints**
+
+---
+
+## Module G :: Vendors Marketplace
+
+> **DB:** MongoDB (Motor async) | **Backend:** FastAPI + Routes→Services→Repositories+Factories pattern | **Frontend:** `src/features/vendors/` · `src/features/marketplace/` · `src/features/messages/`
+
+### EPIC G1: Vendor Onboarding
+
+| ID | User Story | API Endpoint |
+|----|-----------|--------------|
+| G1.1 | As a service provider, I want to register as a Vendor so I can publish services and connect with investors | `POST /api/vendors/register` |
+| G1.2 | As a service provider, I want to review and accept Vendor-specific T&C before operating | — (part of registration flow) |
+| G1.3 | As an approved Vendor, I want to view and edit my company profile to keep my information updated | `GET /api/vendors/{id}` · `PATCH /api/vendors/{id}` |
+| G1.4 | As a Vendor, I want to see my account status (Pending / Approved / Rejected) to know if I can operate | `GET /api/vendors/{id}/status` |
+
+### EPIC G2: Service Management (Vendor)
+
+| ID | User Story | API Endpoint |
+|----|-----------|--------------|
+| G2.1 | As an approved Vendor, I want to create a new service with text content so I can offer it to investors | `POST /api/vendors/{vendor_id}/services` |
+| G2.2 | As an approved Vendor, I want to upload images to my service to make it more attractive | `POST /api/vendors/{vendor_id}/services/media` (multipart) |
+| G2.3 | As a Vendor, I want to edit a draft or rejected service to correct information before review | `PATCH /api/services/{id}` |
+| G2.4 | As an approved Vendor, I want to submit my draft service for admin review so it can be published | `POST /api/services/{id}/submit` |
+| G2.5 | As a Vendor, I want to see all my services with their current status to manage my catalog | `GET /api/vendors/{vendor_id}/services` |
+
+### EPIC G3: Services Marketplace (Investors/Clients)
+
+| ID | User Story | API Endpoint |
+|----|-----------|--------------|
+| G3.1 | As an authenticated investor, I want to browse the vendor services marketplace to find service providers | `GET /api/services` |
+| G3.2 | As an investor, I want to filter services by category to quickly find the type of provider I need | `GET /api/services?category={category}` |
+| G3.3 | As an investor, I want to see the full detail of a vendor service to evaluate whether to contact the provider | `GET /api/services/{id}` |
+
+### EPIC G4: Messaging Vendor ↔ Client
+
+| ID | User Story | API Endpoint |
+|----|-----------|--------------|
+| G4.1 | As an authenticated investor, I want to send a message to a Vendor from their service page to inquire about the service | `POST /api/messages` |
+| G4.2 | As an approved Vendor, I want to see and reply to client messages in my dashboard to manage inquiries | `GET /api/vendors/{id}/messages` · `POST /api/messages/{thread_id}/reply` |
+| G4.3 | As an investor/client, I want to view and reply to Vendor messages in my inbox to follow up on service inquiries | `GET /api/clients/{id}/messages` |
+| G4.4 | As a Vendor, I want to receive an email notification when a client messages me so I can respond promptly | — (async background task) |
+| G4.5 | As a client, I want to receive an email notification when a Vendor replies so I stay informed | — (async background task) |
+
+### EPIC G5: Admin Moderation (Vendors)
+
+| ID | User Story | API Endpoint |
+|----|-----------|--------------|
+| G5.1 | As an admin, I want to see a list of pending vendors to review and moderate their applications | `GET /api/admin/vendors?status=pending` |
+| G5.2 | As an admin, I want to approve a Vendor account so they can operate and publish services | `PATCH /api/admin/vendors/{id}/approve` |
+| G5.3 | As an admin, I want to reject a Vendor with an explicit reason so they can correct their application | `PATCH /api/admin/vendors/{id}/reject` |
+| G5.4 | As an admin, I want to see pending services for review to approve or reject their publication | `GET /api/admin/services?status=pending` |
+| G5.5 | As an admin, I want to approve a Vendor service so it becomes immediately visible in the marketplace | `PATCH /api/admin/services/{id}/approve` |
+| G5.6 | As an admin, I want to reject a service with a reason so the Vendor can correct and resubmit it | `PATCH /api/admin/services/{id}/reject` |
+| G5.7 | As an admin, I want to assign a Vendor service to a specific investment opportunity to connect relevant providers with investors | `POST /api/admin/opportunities/{id}/vendor-services` |
+
+### EPIC G6: Vendor Dashboard
+
+| ID | User Story | API Endpoint |
+|----|-----------|--------------|
+| G6.1 | As an approved Vendor, I want to see a summary of client activity on my dashboard to understand the interest in my services | `GET /api/vendors/{id}/activity/summary` |
+
+---
+
+## Module G :: API Endpoint Summary
+
+| Method | Endpoint | Module |
+|--------|----------|--------|
+| `POST` | `/api/vendors/register` | G |
+| `GET` | `/api/vendors/{id}` | G |
+| `PATCH` | `/api/vendors/{id}` | G |
+| `GET` | `/api/vendors/{id}/status` | G |
+| `GET` | `/api/vendors/{id}/activity/summary` | G |
+| `GET` | `/api/vendors/{id}/messages` | G |
+| `POST` | `/api/vendors/{vendor_id}/services` | G |
+| `POST` | `/api/vendors/{vendor_id}/services/media` | G |
+| `GET` | `/api/vendors/{vendor_id}/services` | G |
+| `PATCH` | `/api/services/{id}` | G |
+| `POST` | `/api/services/{id}/submit` | G |
+| `GET` | `/api/services` | G |
+| `GET` | `/api/services/{id}` | G |
+| `POST` | `/api/messages` | G |
+| `POST` | `/api/messages/{thread_id}/reply` | G |
+| `GET` | `/api/clients/{id}/messages` | G |
+| `GET` | `/api/admin/vendors` | G |
+| `PATCH` | `/api/admin/vendors/{id}/approve` | G |
+| `PATCH` | `/api/admin/vendors/{id}/reject` | G |
+| `GET` | `/api/admin/services` | G |
+| `PATCH` | `/api/admin/services/{id}/approve` | G |
+| `PATCH` | `/api/admin/services/{id}/reject` | G |
+| `POST` | `/api/admin/opportunities/{id}/vendor-services` | G |
+
+---
+
+**Total: 7 Modules · 20 EPICs · 72 User Stories · 57 API Endpoints**
+
+> **Módulo G** generado con Gimena (RUN-003, 2026-03-09) · Work Plan en `WORKPLAN_RUN-003_2026-03-09.md`
+> **Stack G:** FastAPI + MongoDB (Motor async) · Routes→Services→Repositories+Factories · React feature-based (`src/features/`) · TanStack Query · React Hook Form + Zod · MSW
