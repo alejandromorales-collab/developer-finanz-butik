@@ -131,7 +131,7 @@ const MessageThread = () => {
 
         {/* Vendor Info Card — Persistent Sidebar */}
         <aside className="lg:w-72 shrink-0">
-          <Card className="sticky top-6">
+          <div className="sticky top-6 rounded-lg bg-[hsl(var(--elevated-alt))] p-5 space-y-4">
             <CardContent className="p-5 space-y-4">
               <div className="space-y-1">
                 <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-wider">Service Provider</p>
