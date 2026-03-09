@@ -61,7 +61,7 @@ const VendorProfileSetup = () => {
 
         {/* ─── Professional Identity ─── */}
         <TabsContent value="identity">
-          <Card>
+          <Card className="border-0 shadow-none">
             <CardHeader>
               <CardTitle className="text-base">Professional Identity</CardTitle>
               <CardDescription>Your firm credentials and public-facing information</CardDescription>
@@ -121,7 +121,7 @@ const VendorProfileSetup = () => {
 
         {/* ─── Payout Settings ─── */}
         <TabsContent value="payouts">
-          <Card>
+          <Card className="border-0 shadow-none">
             <CardHeader>
               <CardTitle className="text-base">Payout Settings</CardTitle>
               <CardDescription>Bank account configuration and revenue distribution</CardDescription>
@@ -182,7 +182,7 @@ const VendorProfileSetup = () => {
 
         {/* ─── Notifications ─── */}
         <TabsContent value="notifications">
-          <Card>
+          <Card className="border-0 shadow-none">
             <CardHeader>
               <CardTitle className="text-base">Notification Preferences</CardTitle>
               <CardDescription>Control which alerts you receive</CardDescription>
@@ -208,7 +208,7 @@ const VendorProfileSetup = () => {
 
         {/* ─── Agreement Records ─── */}
         <TabsContent value="agreements">
-          <Card>
+          <Card className="border-0 shadow-none">
             <CardHeader>
               <CardTitle className="text-base">Agreement Records</CardTitle>
               <CardDescription>Your signed contracts and terms</CardDescription>
