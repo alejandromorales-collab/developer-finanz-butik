@@ -64,7 +64,7 @@ const MessageThread = () => {
         {/* Main Thread */}
         <div className="flex-1 min-w-0 space-y-4">
           {/* Header */}
-          <div className="space-y-2">
+          <div className="space-y-3 pb-4 border-b border-border">
             <button
               onClick={() => navigate("/vendor/messages")}
               className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
@@ -131,8 +131,7 @@ const MessageThread = () => {
 
         {/* Vendor Info Card — Persistent Sidebar */}
         <aside className="lg:w-72 shrink-0">
-          <Card className="sticky top-6">
-            <CardContent className="p-5 space-y-4">
+          <div className="sticky top-6 rounded-lg bg-[hsl(var(--elevated-alt))] p-5 space-y-4">
               <div className="space-y-1">
                 <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-wider">Service Provider</p>
                 <h3 className="text-sm font-semibold text-foreground">{inquiry.vendorInfo.firmName}</h3>
@@ -161,8 +160,7 @@ const MessageThread = () => {
                 )}
                 <Badge variant="outline" className="text-[10px] mt-1 capitalize">{inquiry.counterparty.role}</Badge>
               </div>
-            </CardContent>
-          </Card>
+          </div>
         </aside>
       </div>
     </div>
