@@ -1,0 +1,226 @@
+export type InquiryStatus = "active" | "resolved" | "pending_response";
+
+export interface VendorInfoCard {
+  firmName: string;
+  category: string;
+  licenseNumber: string;
+  verified: boolean;
+  avatarUrl?: string;
+}
+
+export interface MessageAttachment {
+  id: string;
+  name: string;
+  type: "pdf" | "docx" | "image" | "other";
+  size: string;
+  url: string;
+}
+
+export interface ThreadMessage {
+  id: string;
+  senderId: string;
+  senderName: string;
+  senderRole: "vendor" | "investor" | "admin";
+  body: string;
+  attachments: MessageAttachment[];
+  sentAt: string;
+}
+
+export interface Inquiry {
+  id: string;
+  subject: string;
+  serviceTitle: string;
+  serviceCategory: string;
+  status: InquiryStatus;
+  lastMessageAt: string;
+  lastMessagePreview: string;
+  unreadCount: number;
+  counterparty: {
+    name: string;
+    role: "investor" | "vendor";
+    company?: string;
+  };
+  vendorInfo: VendorInfoCard;
+  messages: ThreadMessage[];
+}
+
+export const mockInquiries: Inquiry[] = [
+  {
+    id: "inq-1",
+    subject: "Due Diligence – Lote Industrial Querétaro",
+    serviceTitle: "Real Estate Due Diligence",
+    serviceCategory: "Legal Incorporation and Filings",
+    status: "active",
+    lastMessageAt: "2026-03-08T14:32:00Z",
+    lastMessagePreview: "Attached the updated title report for Lot 14-B. Please review the lien section on page 12.",
+    unreadCount: 2,
+    counterparty: {
+      name: "Alejandra Vega",
+      role: "investor",
+      company: "Vega Capital Partners",
+    },
+    vendorInfo: {
+      firmName: "Ruiz & Asociados Legal",
+      category: "Legal Incorporation and Filings",
+      licenseNumber: "BAR-MX-2018-44521",
+      verified: true,
+    },
+    messages: [
+      {
+        id: "msg-1a",
+        senderId: "inv-1",
+        senderName: "Alejandra Vega",
+        senderRole: "investor",
+        body: "Good morning. I'd like to engage your firm for due diligence on a 2,400m² industrial lot in Querétaro's El Marqués park. We're looking at a Q2 closing and need the title search completed by April 15.\n\nCould you confirm availability and share your standard engagement letter?",
+        attachments: [],
+        sentAt: "2026-03-05T09:15:00Z",
+      },
+      {
+        id: "msg-1b",
+        senderId: "ven-1",
+        senderName: "Carlos Ruiz",
+        senderRole: "vendor",
+        body: "Thank you for reaching out, Ms. Vega. We have availability for this engagement. I've attached our standard engagement letter and fee schedule for your review.\n\nWe'll need the following to begin:\n1. Property registry number\n2. Current owner's legal name or RFC\n3. Any existing appraisals or surveys\n\nPlease let me know if you have questions about the terms.",
+        attachments: [
+          {
+            id: "att-1",
+            name: "Engagement_Letter_Ruiz_2026.pdf",
+            type: "pdf",
+            size: "245 KB",
+            url: "#",
+          },
+          {
+            id: "att-2",
+            name: "Fee_Schedule_DD_Industrial.pdf",
+            type: "pdf",
+            size: "128 KB",
+            url: "#",
+          },
+        ],
+        sentAt: "2026-03-05T16:42:00Z",
+      },
+      {
+        id: "msg-1c",
+        senderId: "inv-1",
+        senderName: "Alejandra Vega",
+        senderRole: "investor",
+        body: "Terms look good. I've signed the engagement letter (attached). Here's the property information:\n\n- Registry: QRO-EM-2024-08812\n- Owner: Desarrollos Industriales del Bajío S.A. de C.V.\n- Survey attached from January 2026\n\nLooking forward to your preliminary findings.",
+        attachments: [
+          {
+            id: "att-3",
+            name: "Signed_Engagement_Letter.pdf",
+            type: "pdf",
+            size: "310 KB",
+            url: "#",
+          },
+          {
+            id: "att-4",
+            name: "Topographic_Survey_Jan2026.pdf",
+            type: "pdf",
+            size: "2.1 MB",
+            url: "#",
+          },
+        ],
+        sentAt: "2026-03-06T11:20:00Z",
+      },
+      {
+        id: "msg-1d",
+        senderId: "ven-1",
+        senderName: "Carlos Ruiz",
+        senderRole: "vendor",
+        body: "Attached the updated title report for Lot 14-B. Please review the lien section on page 12. There's a minor annotation from 2019 that needs to be cleared before closing. I've already contacted the Registro Público to expedite the cancellation.\n\nEstimated resolution: 5-7 business days.",
+        attachments: [
+          {
+            id: "att-5",
+            name: "Title_Report_Lot14B_Preliminary.pdf",
+            type: "pdf",
+            size: "1.8 MB",
+            url: "#",
+          },
+        ],
+        sentAt: "2026-03-08T14:32:00Z",
+      },
+    ],
+  },
+  {
+    id: "inq-2",
+    subject: "Tax Structuring – Multi-jurisdictional Holdings",
+    serviceTitle: "Tax Optimization Strategy",
+    serviceCategory: "Accounting, Taxes, and Compliance",
+    status: "pending_response",
+    lastMessageAt: "2026-03-07T10:05:00Z",
+    lastMessagePreview: "We'd like to explore a holding structure between Mexico and the US for our new REIT vehicle.",
+    unreadCount: 1,
+    counterparty: {
+      name: "Marcus Chen",
+      role: "investor",
+      company: "Pacific Rim Investments",
+    },
+    vendorInfo: {
+      firmName: "Ruiz & Asociados Legal",
+      category: "Accounting, Taxes, and Compliance",
+      licenseNumber: "BAR-MX-2018-44521",
+      verified: true,
+    },
+    messages: [
+      {
+        id: "msg-2a",
+        senderId: "inv-2",
+        senderName: "Marcus Chen",
+        senderRole: "investor",
+        body: "Dear Ruiz & Asociados,\n\nWe'd like to explore a holding structure between Mexico and the US for our new REIT vehicle. Our fund has approximately $12M in committed capital targeting commercial properties in Monterrey and Guadalajara.\n\nKey considerations:\n- Double taxation treaty optimization\n- Repatriation of dividends\n- Mexican FIBRA structure vs. US REIT wrapper\n\nCould you provide a preliminary assessment and estimated timeline for a formal opinion?",
+        attachments: [],
+        sentAt: "2026-03-07T10:05:00Z",
+      },
+    ],
+  },
+  {
+    id: "inq-3",
+    subject: "Annual Audit – RE Fund III",
+    serviceTitle: "Fund Audit & Compliance Report",
+    serviceCategory: "Accounting, Taxes, and Compliance",
+    status: "resolved",
+    lastMessageAt: "2026-02-28T17:00:00Z",
+    lastMessagePreview: "Final audit report delivered. Thank you for a smooth process this year.",
+    unreadCount: 0,
+    counterparty: {
+      name: "Sofia Martínez",
+      role: "investor",
+      company: "Meridian Real Estate Fund",
+    },
+    vendorInfo: {
+      firmName: "Ruiz & Asociados Legal",
+      category: "Accounting, Taxes, and Compliance",
+      licenseNumber: "BAR-MX-2018-44521",
+      verified: true,
+    },
+    messages: [
+      {
+        id: "msg-3a",
+        senderId: "inv-3",
+        senderName: "Sofia Martínez",
+        senderRole: "investor",
+        body: "Hi Carlos, we need to schedule the annual audit for RE Fund III. Our fiscal year ends March 31. Can we begin preliminary work in early March?",
+        attachments: [],
+        sentAt: "2026-02-15T09:00:00Z",
+      },
+      {
+        id: "msg-3b",
+        senderId: "ven-1",
+        senderName: "Carlos Ruiz",
+        senderRole: "vendor",
+        body: "Final audit report delivered. Thank you for a smooth process this year. All findings are clean — no material adjustments required. The signed opinion letter is attached.",
+        attachments: [
+          {
+            id: "att-6",
+            name: "Audit_Report_REFundIII_FY2025.pdf",
+            type: "pdf",
+            size: "4.2 MB",
+            url: "#",
+          },
+        ],
+        sentAt: "2026-02-28T17:00:00Z",
+      },
+    ],
+  },
+];
