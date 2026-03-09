@@ -96,7 +96,7 @@ const VendorDashboard = () => {
               const cfg = statusConfig[s.status];
               const Icon = cfg.icon;
               return (
-                <Card key={s.id} className="hover:shadow-md transition-shadow">
+                <Card key={s.id} className="border-0 shadow-none hover:shadow-md transition-shadow">
                   <CardHeader className="pb-3">
                     <div className="flex items-start justify-between gap-2">
                       <CardTitle className="text-sm font-semibold leading-snug">{s.title}</CardTitle>
