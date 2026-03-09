@@ -52,11 +52,11 @@ const VendorProfileSetup = () => {
       </div>
 
       <Tabs defaultValue="identity" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-4 h-auto">
-          <TabsTrigger value="identity" className="text-xs py-2"><IdentificationCard size={14} className="mr-1" /> Identity</TabsTrigger>
-          <TabsTrigger value="payouts" className="text-xs py-2"><Bank size={14} className="mr-1" /> Payouts</TabsTrigger>
-          <TabsTrigger value="notifications" className="text-xs py-2"><Bell size={14} className="mr-1" /> Notifications</TabsTrigger>
-          <TabsTrigger value="agreements" className="text-xs py-2"><FileText size={14} className="mr-1" /> Agreements</TabsTrigger>
+        <TabsList className="grid w-full grid-cols-4 h-auto bg-surface-elevated-alt">
+          <TabsTrigger value="identity" className="text-xs py-2 data-[state=active]:bg-card"><IdentificationCard size={14} className="mr-1" /> Identity</TabsTrigger>
+          <TabsTrigger value="payouts" className="text-xs py-2 data-[state=active]:bg-card"><Bank size={14} className="mr-1" /> Payouts</TabsTrigger>
+          <TabsTrigger value="notifications" className="text-xs py-2 data-[state=active]:bg-card"><Bell size={14} className="mr-1" /> Notifications</TabsTrigger>
+          <TabsTrigger value="agreements" className="text-xs py-2 data-[state=active]:bg-card"><FileText size={14} className="mr-1" /> Agreements</TabsTrigger>
         </TabsList>
 
         {/* ─── Professional Identity ─── */}
