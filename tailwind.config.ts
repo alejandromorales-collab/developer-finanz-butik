@@ -19,6 +19,11 @@ export default {
       },
       colors: {
         border: "hsl(var(--border))",
+        "border-select": "hsl(var(--border-select))",
+        "border-positive": "hsl(var(--border-positive))",
+        "border-negative": "hsl(var(--border-negative))",
+        "border-info": "hsl(var(--border-info))",
+        "border-warning": "hsl(var(--border-warning))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
@@ -26,14 +31,20 @@ export default {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          hover: "hsl(var(--primary-hover))",
+          pressed: "hsl(var(--primary-pressed))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
+          hover: "hsl(var(--secondary-hover))",
+          pressed: "hsl(var(--secondary-pressed))",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
+          hover: "hsl(var(--destructive-hover))",
+          pressed: "hsl(var(--destructive-pressed))",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
@@ -51,6 +62,45 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Surface tokens
+        surface: {
+          "elevated-alt": "hsl(var(--surface-elevated-alt))",
+          "elevated-alt-2": "hsl(var(--surface-elevated-alt-2))",
+          inverse: "hsl(var(--surface-inverse))",
+          "inverse-alt": "hsl(var(--surface-inverse-alt))",
+          "screen-inverse": "hsl(var(--surface-screen-inverse))",
+          disabled: "hsl(var(--surface-disabled))",
+        },
+        // Action disabled
+        "action-disabled": {
+          bg: "hsl(var(--action-disabled-bg))",
+          text: "hsl(var(--action-disabled-text))",
+        },
+        // Text content tokens
+        "content-primary": "hsl(var(--text-primary))",
+        "content-secondary": "hsl(var(--text-secondary))",
+        "content-tertiary": "hsl(var(--text-tertiary))",
+        "content-high-emphasis": "hsl(var(--text-high-emphasis))",
+        "content-inverse": "hsl(var(--text-inverse))",
+        "content-error": "hsl(var(--text-error))",
+        // Icon tokens
+        icon: {
+          DEFAULT: "hsl(var(--icon-default))",
+          disabled: "hsl(var(--icon-disabled))",
+          inverse: "hsl(var(--icon-inverse))",
+          info: "hsl(var(--icon-info))",
+          error: "hsl(var(--icon-error))",
+          warning: "hsl(var(--icon-warning))",
+          success: "hsl(var(--icon-success))",
+        },
+        // Sentiment (toast backgrounds)
+        sentiment: {
+          positive: "hsl(var(--sentiment-positive))",
+          negative: "hsl(var(--sentiment-negative))",
+          info: "hsl(var(--sentiment-info))",
+          warning: "hsl(var(--sentiment-warning))",
+        },
+        // Legacy extended palette
         navy: "hsl(var(--navy))",
         charcoal: "hsl(var(--charcoal))",
         gold: "hsl(var(--gold))",

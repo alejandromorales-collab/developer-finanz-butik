@@ -9,7 +9,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { CheckCircle, Clock, Shield, Bell, Bank, FileText, IdentificationCard } from "@phosphor-icons/react";
+import { CheckCircle, Clock, Shield, Bell, Bank, FileText, IdentificationCard, Camera } from "@phosphor-icons/react";
 import { useToast } from "@/hooks/use-toast";
 import { vendorProfile } from "@/data/mockVendor";
 
@@ -23,6 +23,16 @@ const VendorProfileSetup = () => {
   const [taxId, setTaxId] = useState(vendorProfile.taxId);
   const [license, setLicense] = useState(vendorProfile.licenseNumber);
   const [termsAccepted, setTermsAccepted] = useState(true);
+  const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
+
+  const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => setAvatarPreview(reader.result as string);
+      reader.readAsDataURL(file);
+    }
+  };
 
   // Notification toggles
   const [notifMessages, setNotifMessages] = useState(true);
@@ -39,29 +49,45 @@ const VendorProfileSetup = () => {
 
   return (
     <div className="space-y-6 max-w-3xl">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="font-heading text-2xl font-bold text-foreground">Profile & Settings</h1>
-          <p className="mt-1 text-sm text-muted-foreground">Manage your professional identity and account settings</p>
+      {/* Header with Avatar */}
+      <div className="flex items-center gap-6">
+        {/* Avatar upload */}
+        <label htmlFor="avatar-upload" className="group relative cursor-pointer">
+          <div className="h-20 w-20 rounded-full border-2 border-dashed border-border bg-muted flex items-center justify-center overflow-hidden transition-colors group-hover:border-primary">
+            {avatarPreview ? (
+              <img src={avatarPreview} alt="Profile" className="h-full w-full object-cover" />
+            ) : (
+              <Camera size={28} className="text-muted-foreground group-hover:text-primary transition-colors" />
+            )}
+          </div>
+          <div className="absolute -bottom-1 -right-1 h-6 w-6 rounded-full bg-primary flex items-center justify-center shadow-sm">
+            <Camera size={12} className="text-primary-foreground" />
+          </div>
+          <input id="avatar-upload" type="file" accept="image/*" className="hidden" onChange={handleAvatarChange} />
+        </label>
+        <div className="flex-1 flex items-center justify-between">
+          <div>
+            <h1 className="font-heading text-2xl font-bold text-foreground">Profile & Settings</h1>
+            <p className="mt-1 text-sm text-muted-foreground">Manage your professional identity and account settings</p>
+          </div>
+          <Badge variant="outline" className={vendorProfile.verified ? "bg-emerald-100 text-emerald-800 border-emerald-200" : "bg-amber-100 text-amber-800 border-amber-200"}>
+            {vendorProfile.verified ? <CheckCircle size={14} className="mr-1" /> : <Clock size={14} className="mr-1" />}
+            {vendorProfile.verified ? "Verified" : "Pending Verification"}
+          </Badge>
         </div>
-        <Badge variant="outline" className={vendorProfile.verified ? "bg-emerald-100 text-emerald-800 border-emerald-200" : "bg-amber-100 text-amber-800 border-amber-200"}>
-          {vendorProfile.verified ? <CheckCircle size={14} className="mr-1" /> : <Clock size={14} className="mr-1" />}
-          {vendorProfile.verified ? "Verified" : "Pending Verification"}
-        </Badge>
       </div>
 
       <Tabs defaultValue="identity" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-4 h-auto">
-          <TabsTrigger value="identity" className="text-xs py-2"><IdentificationCard size={14} className="mr-1" /> Identity</TabsTrigger>
-          <TabsTrigger value="payouts" className="text-xs py-2"><Bank size={14} className="mr-1" /> Payouts</TabsTrigger>
-          <TabsTrigger value="notifications" className="text-xs py-2"><Bell size={14} className="mr-1" /> Notifications</TabsTrigger>
-          <TabsTrigger value="agreements" className="text-xs py-2"><FileText size={14} className="mr-1" /> Agreements</TabsTrigger>
+        <TabsList className="grid w-full grid-cols-4 h-auto bg-surface-elevated-alt">
+          <TabsTrigger value="identity" className="text-xs py-2 data-[state=active]:bg-card"><IdentificationCard size={14} className="mr-1" /> Identity</TabsTrigger>
+          <TabsTrigger value="payouts" className="text-xs py-2 data-[state=active]:bg-card"><Bank size={14} className="mr-1" /> Payouts</TabsTrigger>
+          <TabsTrigger value="notifications" className="text-xs py-2 data-[state=active]:bg-card"><Bell size={14} className="mr-1" /> Notifications</TabsTrigger>
+          <TabsTrigger value="agreements" className="text-xs py-2 data-[state=active]:bg-card"><FileText size={14} className="mr-1" /> Agreements</TabsTrigger>
         </TabsList>
 
         {/* ─── Professional Identity ─── */}
         <TabsContent value="identity">
-          <Card>
+          <Card className="border-0 shadow-none">
             <CardHeader>
               <CardTitle className="text-base">Professional Identity</CardTitle>
               <CardDescription>Your firm credentials and public-facing information</CardDescription>
@@ -69,11 +95,11 @@ const VendorProfileSetup = () => {
             <CardContent className="space-y-5">
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="space-y-2">
-                  <Label htmlFor="firmName">Firm Name *</Label>
+                  <Label htmlFor="firmName">Firm Name <span className="text-[hsl(var(--text-error))]">*</span></Label>
                   <Input id="firmName" value={firmName} onChange={(e) => setFirmName(e.target.value)} placeholder="Your firm or business name" />
                 </div>
                 <div className="space-y-2">
-                  <Label>Category *</Label>
+                  <Label>Category <span className="text-[hsl(var(--text-error))]">*</span></Label>
                   <Select value={category} onValueChange={setCategory}>
                     <SelectTrigger><SelectValue placeholder="Select category" /></SelectTrigger>
                     <SelectContent>
@@ -121,7 +147,7 @@ const VendorProfileSetup = () => {
 
         {/* ─── Payout Settings ─── */}
         <TabsContent value="payouts">
-          <Card>
+          <Card className="border-0 shadow-none">
             <CardHeader>
               <CardTitle className="text-base">Payout Settings</CardTitle>
               <CardDescription>Bank account configuration and revenue distribution</CardDescription>
@@ -182,7 +208,7 @@ const VendorProfileSetup = () => {
 
         {/* ─── Notifications ─── */}
         <TabsContent value="notifications">
-          <Card>
+          <Card className="border-0 shadow-none">
             <CardHeader>
               <CardTitle className="text-base">Notification Preferences</CardTitle>
               <CardDescription>Control which alerts you receive</CardDescription>
@@ -208,7 +234,7 @@ const VendorProfileSetup = () => {
 
         {/* ─── Agreement Records ─── */}
         <TabsContent value="agreements">
-          <Card>
+          <Card className="border-0 shadow-none">
             <CardHeader>
               <CardTitle className="text-base">Agreement Records</CardTitle>
               <CardDescription>Your signed contracts and terms</CardDescription>

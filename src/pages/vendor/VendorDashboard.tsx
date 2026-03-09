@@ -38,8 +38,7 @@ const VendorDashboard = () => {
         <p className="mt-1 text-sm text-muted-foreground">Manage your professional services portfolio</p>
       </div>
 
-      {/* Action Cards */}
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className={`grid gap-4 ${isEmpty ? 'sm:grid-cols-2' : 'sm:grid-cols-1 max-w-md'}`}>
         <Card className="border-dashed border-primary/30 hover:border-primary/60 transition-colors">
           <CardContent className="flex items-center gap-4 p-5">
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10">
@@ -54,20 +53,22 @@ const VendorDashboard = () => {
             </Button>
           </CardContent>
         </Card>
-        <Card className="border-dashed border-primary/30 hover:border-primary/60 transition-colors">
-          <CardContent className="flex items-center gap-4 p-5">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10">
-              <PlusCircle size={24} className="text-primary" />
-            </div>
-            <div className="flex-1">
-              <p className="font-heading font-semibold text-foreground text-sm">Create a new service</p>
-              <p className="text-xs text-muted-foreground">Publish a professional service offering</p>
-            </div>
-            <Button size="sm" variant="ghost" asChild>
-              <Link to="/vendor/new-service"><ArrowRight size={16} /></Link>
-            </Button>
-          </CardContent>
-        </Card>
+        {isEmpty && (
+          <Card className="border-dashed border-primary/30 hover:border-primary/60 transition-colors">
+            <CardContent className="flex items-center gap-4 p-5">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                <PlusCircle size={24} className="text-primary" />
+              </div>
+              <div className="flex-1">
+                <p className="font-heading font-semibold text-foreground text-sm">Create a new service</p>
+                <p className="text-xs text-muted-foreground">Publish a professional service offering</p>
+              </div>
+              <Button size="sm" variant="ghost" asChild>
+                <Link to="/vendor/new-service"><ArrowRight size={16} /></Link>
+              </Button>
+            </CardContent>
+          </Card>
+        )}
       </div>
 
       {/* Service List */}
@@ -96,7 +97,7 @@ const VendorDashboard = () => {
               const cfg = statusConfig[s.status];
               const Icon = cfg.icon;
               return (
-                <Card key={s.id} className="hover:shadow-md transition-shadow">
+                <Card key={s.id} className="border-0 shadow-none hover:shadow-md transition-shadow">
                   <CardHeader className="pb-3">
                     <div className="flex items-start justify-between gap-2">
                       <CardTitle className="text-sm font-semibold leading-snug">{s.title}</CardTitle>

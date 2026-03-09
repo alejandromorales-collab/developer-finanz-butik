@@ -1,4 +1,5 @@
 import { Briefcase, PlusCircle, ChartBar, UserCircle, SignOut, Gear } from "@phosphor-icons/react";
+import finanzbutikLogo from "@/assets/finanzbutik-logo.png";
 import { NavLink } from "@/components/NavLink";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -37,15 +38,10 @@ export function VendorSidebar() {
         <SidebarGroup>
           <SidebarGroupLabel>
             {!collapsed && (
-              <span className="flex items-center gap-2">
-                <div className="flex h-6 w-6 items-center justify-center rounded bg-primary">
-                  <span className="text-[10px] font-bold text-primary-foreground">FB</span>
-                </div>
-                Vendor Portal
-              </span>
+              <img src={finanzbutikLogo} alt="FinanzButik" className="h-8 mt-4 mb-4" />
             )}
           </SidebarGroupLabel>
-          <SidebarGroupContent>
+          <SidebarGroupContent className="mt-6">
             <SidebarMenu>
               {mainItems.map((item) => (
                 <SidebarMenuItem key={item.url}>
