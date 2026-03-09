@@ -38,7 +38,7 @@ export function VendorSidebar() {
         <SidebarGroup>
           <SidebarGroupLabel>
             {!collapsed && (
-              <img src={finanzbutikLogo} alt="FinanzButik" className="h-6" />
+              <img src={finanzbutikLogo} alt="FinanzButik" className="h-8 mb-4" />
             )}
           </SidebarGroupLabel>
           <SidebarGroupContent>
