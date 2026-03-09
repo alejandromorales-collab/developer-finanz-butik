@@ -41,7 +41,7 @@ export function VendorSidebar() {
               <img src={finanzbutikLogo} alt="FinanzButik" className="h-8 mt-4 mb-4" />
             )}
           </SidebarGroupLabel>
-          <SidebarGroupContent>
+          <SidebarGroupContent className="mt-6">
             <SidebarMenu>
               {mainItems.map((item) => (
                 <SidebarMenuItem key={item.url}>
