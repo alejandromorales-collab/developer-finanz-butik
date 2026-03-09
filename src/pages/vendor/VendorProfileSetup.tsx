@@ -61,7 +61,7 @@ const VendorProfileSetup = () => {
 
         {/* ─── Professional Identity ─── */}
         <TabsContent value="identity">
-          <Card>
+          <Card className="border-0 shadow-none">
             <CardHeader>
               <CardTitle className="text-base">Professional Identity</CardTitle>
               <CardDescription>Your firm credentials and public-facing information</CardDescription>
