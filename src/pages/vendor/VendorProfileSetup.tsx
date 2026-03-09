@@ -121,7 +121,7 @@ const VendorProfileSetup = () => {
 
         {/* ─── Payout Settings ─── */}
         <TabsContent value="payouts">
-          <Card>
+          <Card className="border-0 shadow-none">
             <CardHeader>
               <CardTitle className="text-base">Payout Settings</CardTitle>
               <CardDescription>Bank account configuration and revenue distribution</CardDescription>
