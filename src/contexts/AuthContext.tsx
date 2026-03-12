@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useCallback, type ReactNode } from "react";
 
-export type UserRole = "investor" | "developer" | "vendor";
+export type UserRole = "investor" | "developer" | "vendor" | "agent";
 
 export interface MockUser {
   id: string;
