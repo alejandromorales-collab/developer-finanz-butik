@@ -61,9 +61,9 @@ const AgentAnalytics = () => {
         <CardHeader className="flex flex-row items-center justify-between">
           <CardTitle className="text-lg">Uso del Código en el Tiempo</CardTitle>
           <Tabs value={timeframe} onValueChange={(v) => setTimeframe(v as "weekly" | "monthly")}>
-            <TabsList>
-              <TabsTrigger value="weekly">Semanal</TabsTrigger>
-              <TabsTrigger value="monthly">Mensual</TabsTrigger>
+            <TabsList className="bg-muted">
+              <TabsTrigger value="weekly" className="data-[state=active]:bg-card data-[state=active]:text-foreground data-[state=active]:shadow-sm">Semanal</TabsTrigger>
+              <TabsTrigger value="monthly" className="data-[state=active]:bg-card data-[state=active]:text-foreground data-[state=active]:shadow-sm">Mensual</TabsTrigger>
             </TabsList>
           </Tabs>
         </CardHeader>

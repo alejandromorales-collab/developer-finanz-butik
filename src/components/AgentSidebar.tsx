@@ -1,4 +1,4 @@
-import { House, ChartBar, UserCircle, SignOut, Megaphone, EnvelopeSimple } from "@phosphor-icons/react";
+import { House, ChartBar, UserCircle, SignOut, Megaphone } from "@phosphor-icons/react";
 import finanzbutikLogo from "@/assets/finanzbutik-logo.png";
 import { NavLink } from "@/components/NavLink";
 import { useAuth } from "@/contexts/AuthContext";
@@ -19,7 +19,6 @@ import {
 const mainItems = [
   { title: "Dashboard", url: "/agent", icon: House },
   { title: "Analytics", url: "/agent/analytics", icon: ChartBar },
-  { title: "Messages", url: "/agent/messages", icon: EnvelopeSimple },
 ];
 
 const settingsItems = [

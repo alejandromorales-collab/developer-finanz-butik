@@ -3,7 +3,6 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Copy, Check, DownloadSimple, Warning, WhatsappLogo, EnvelopeSimple, IdentificationBadge, ShieldCheck } from "@phosphor-icons/react";
 import { agentProfile, mediaKitItems } from "@/data/mockAgent";
@@ -72,6 +71,16 @@ const AgentProfileSetup = () => {
             <CardDescription>Información visible para el equipo de Finanz Butik</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
+            {/* Profile Photo — first */}
+            <div className="space-y-2">
+              <Label>Foto de Perfil</Label>
+              <div className="flex items-center gap-3">
+                <div className="h-16 w-16 rounded-full bg-muted flex items-center justify-center text-muted-foreground text-xl font-bold font-heading">
+                  {form.name.split(" ").map(n => n[0]).join("").slice(0, 2)}
+                </div>
+                <Button size="sm" variant="outline">Cambiar foto</Button>
+              </div>
+            </div>
             <div className="space-y-2">
               <Label htmlFor="name">Nombre Completo o Entidad Legal</Label>
               <Input id="name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
@@ -85,19 +94,10 @@ const AgentProfileSetup = () => {
               <textarea
                 id="bio"
                 rows={3}
-                className="flex w-full rounded-md border border-input bg-white/50 px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                className="flex w-full rounded-lg border border-input bg-[hsl(var(--surface-input))] px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 value={form.bio}
                 onChange={(e) => setForm({ ...form, bio: e.target.value })}
               />
-            </div>
-            <div className="space-y-2">
-              <Label>Foto de Perfil</Label>
-              <div className="flex items-center gap-3">
-                <div className="h-16 w-16 rounded-full bg-muted flex items-center justify-center text-muted-foreground text-xl font-bold font-heading">
-                  {form.name.split(" ").map(n => n[0]).join("").slice(0, 2)}
-                </div>
-                <Button size="sm" variant="outline">Cambiar foto</Button>
-              </div>
             </div>
             <div className="flex items-start gap-2 pt-2">
               <Checkbox

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -13,13 +13,62 @@ const onboardingSlides = [
   { icon: Target, title: "Monitorea tus resultados", desc: "Visualiza tu embudo, comisiones acumuladas y rendimiento por proyecto en tiempo real." },
 ];
 
-const AgentDashboard = () => {
-  const { user } = useAuth();
-  const [showOnboarding, setShowOnboarding] = useState(true);
-  const [slideIndex, setSlideIndex] = useState(0);
+function OnboardingCarousel({ onFinish }: { onFinish: () => void }) {
+  const [step, setStep] = useState(0);
+  const slide = onboardingSlides[step];
+  const Icon = slide.icon;
+  const isLast = step === onboardingSlides.length - 1;
 
   return (
-    <div className="space-y-6">
+    <div className="flex items-center justify-center min-h-[60vh]">
+      <Card className="w-full max-w-md text-center">
+        <CardContent className="pt-10 pb-8 px-8 space-y-6">
+          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10">
+            <Icon size={32} className="text-primary" />
+          </div>
+          <div>
+            <h2 className="font-heading text-xl font-bold text-foreground">{slide.title}</h2>
+            <p className="mt-2 text-sm text-muted-foreground">{slide.desc}</p>
+          </div>
+          <div className="flex items-center justify-center gap-1.5">
+            {onboardingSlides.map((_, i) => (
+              <div key={i} className={`h-1.5 rounded-full transition-all ${i === step ? "w-6 bg-primary" : "w-1.5 bg-border"}`} />
+            ))}
+          </div>
+          <div className="flex gap-2">
+            <Button onClick={isLast ? onFinish : () => setStep(step + 1)} className="flex-1">
+              {isLast ? "Comenzar" : "Siguiente"}
+            </Button>
+            {!isLast && (
+              <Button variant="ghost" onClick={onFinish} className="text-muted-foreground">
+                Omitir
+              </Button>
+            )}
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+const AgentDashboard = () => {
+  const { user } = useAuth();
+  const [showOnboarding, setShowOnboarding] = useState(false);
+
+  useEffect(() => {
+    const hasVisited = sessionStorage.getItem("agent_onboarded");
+    if (!hasVisited) {
+      setShowOnboarding(true);
+      sessionStorage.setItem("agent_onboarded", "true");
+    }
+  }, []);
+
+  if (showOnboarding) {
+    return <OnboardingCarousel onFinish={() => setShowOnboarding(false)} />;
+  }
+
+  return (
+    <div className="space-y-6 max-w-5xl">
       <div>
         <h1 className="font-heading text-2xl font-bold text-foreground">
           Hola, {user?.name?.split(" ")[0]} 👋
@@ -27,76 +76,33 @@ const AgentDashboard = () => {
         <p className="text-sm text-muted-foreground mt-1">Tu centro de comando de ventas y comisiones</p>
       </div>
 
-      {/* Onboarding Carousel */}
-      {showOnboarding && (
-        <Card className="border-primary/20 bg-[hsl(var(--sentiment-info))]">
-          <CardContent className="p-6">
-            <div className="flex items-start gap-4">
-              {(() => {
-                const Icon = onboardingSlides[slideIndex].icon;
-                return <Icon size={32} className="text-primary shrink-0 mt-1" />;
-              })()}
-              <div className="flex-1">
-                <h3 className="font-heading font-bold text-foreground">{onboardingSlides[slideIndex].title}</h3>
-                <p className="text-sm text-muted-foreground mt-1">{onboardingSlides[slideIndex].desc}</p>
-                <div className="flex items-center gap-3 mt-4">
-                  <div className="flex gap-1.5">
-                    {onboardingSlides.map((_, i) => (
-                      <button
-                        key={i}
-                        onClick={() => setSlideIndex(i)}
-                        className={`h-1.5 rounded-full transition-all ${i === slideIndex ? "w-6 bg-primary" : "w-1.5 bg-border"}`}
-                      />
-                    ))}
-                  </div>
-                  <div className="ml-auto flex gap-2">
-                    {slideIndex < onboardingSlides.length - 1 ? (
-                      <Button size="sm" onClick={() => setSlideIndex(slideIndex + 1)}>
-                        Siguiente <ArrowRight size={14} className="ml-1" />
-                      </Button>
-                    ) : (
-                      <Button size="sm" onClick={() => setShowOnboarding(false)}>
-                        Comenzar
-                      </Button>
-                    )}
-                    <Button size="sm" variant="ghost" onClick={() => setShowOnboarding(false)}>
-                      Omitir
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      )}
-
       {/* Action Cards */}
       <div className="grid gap-4 md:grid-cols-2">
-        <Card className="hover:shadow-md transition-shadow">
-          <CardContent className="p-6 flex items-center gap-4">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10">
+        <Card className="border-dashed border-primary/30 hover:border-primary/60 transition-colors">
+          <CardContent className="flex items-center gap-4 p-5">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10">
               <UserCircle size={24} className="text-primary" />
             </div>
             <div className="flex-1">
-              <h3 className="font-heading font-semibold text-foreground">Set up Agent Profile</h3>
-              <p className="text-xs text-muted-foreground mt-0.5">Completa tu perfil y acepta los términos de comisionamiento</p>
+              <p className="font-heading font-semibold text-foreground text-sm">Set up Agent Profile</p>
+              <p className="text-xs text-muted-foreground">Completa tu perfil y acepta los términos de comisionamiento</p>
             </div>
-            <Button size="sm" variant="outline" asChild>
-              <Link to="/agent/profile">Configurar</Link>
+            <Button size="sm" variant="ghost" asChild>
+              <Link to="/agent/profile"><ArrowRight size={16} /></Link>
             </Button>
           </CardContent>
         </Card>
-        <Card className="hover:shadow-md transition-shadow">
-          <CardContent className="p-6 flex items-center gap-4">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10">
+        <Card className="border-dashed border-primary/30 hover:border-primary/60 transition-colors">
+          <CardContent className="flex items-center gap-4 p-5">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10">
               <Storefront size={24} className="text-primary" />
             </div>
             <div className="flex-1">
-              <h3 className="font-heading font-semibold text-foreground">Browse Opportunity Catalog</h3>
-              <p className="text-xs text-muted-foreground mt-0.5">Explora proyectos activos para compartir con tu red</p>
+              <p className="font-heading font-semibold text-foreground text-sm">Browse Opportunity Catalog</p>
+              <p className="text-xs text-muted-foreground">Explora proyectos activos para compartir con tu red</p>
             </div>
-            <Button size="sm" variant="outline" asChild>
-              <Link to="/">Explorar</Link>
+            <Button size="sm" variant="ghost" asChild>
+              <Link to="/"><ArrowRight size={16} /></Link>
             </Button>
           </CardContent>
         </Card>
@@ -191,9 +197,9 @@ const AgentDashboard = () => {
                     <td className="py-3 text-right font-medium text-foreground">${attr.amount.toLocaleString()}</td>
                     <td className="py-3 text-muted-foreground">{attr.date}</td>
                     <td className="py-3">
-                      <Badge variant="outline" className="border-[hsl(var(--gold))] text-[hsl(var(--gold))]">
+                      <span className="inline-flex items-center rounded-full border border-[hsl(var(--gold))] px-2 py-0.5 text-xs font-medium text-[hsl(var(--gold))]">
                         Pendiente
-                      </Badge>
+                      </span>
                     </td>
                   </tr>
                 ))}
