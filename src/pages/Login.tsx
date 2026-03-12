@@ -1,12 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth, type UserRole } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
-import { User, Buildings, Briefcase } from "@phosphor-icons/react";
+import { User, Buildings, Briefcase, Megaphone } from "@phosphor-icons/react";
 
 const roles: { role: UserRole; label: string; desc: string; icon: typeof User; path: string }[] = [
   { role: "investor", label: "Inversor", desc: "Explora oportunidades y gestiona tu portafolio", icon: User, path: "/" },
   { role: "developer", label: "Developer", desc: "Publica proyectos, gestiona clientes y personaliza la marca", icon: Buildings, path: "/developer" },
   { role: "vendor", label: "Vendor", desc: "Ofrece servicios profesionales, gestiona credenciales y monitorea tus ingresos", icon: Briefcase, path: "/vendor" },
+  { role: "agent", label: "Agent / Reseller", desc: "Distribuye oportunidades, monitorea tu embudo de ventas y gestiona tus comisiones acumuladas", icon: Megaphone, path: "/agent" },
 ];
 
 const Login = () => {
