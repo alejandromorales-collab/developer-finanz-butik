@@ -72,8 +72,6 @@ const App = () => (
             <Route path="/agent" element={<ProtectedRoute allowedRoles={["agent"]}><AgentLayout /></ProtectedRoute>}>
               <Route index element={<AgentDashboard />} />
               <Route path="analytics" element={<AgentAnalytics />} />
-              <Route path="messages" element={<MessagingHub />} />
-              <Route path="messages/:id" element={<MessageThread />} />
               <Route path="profile" element={<AgentProfileSetup />} />
             </Route>
 
