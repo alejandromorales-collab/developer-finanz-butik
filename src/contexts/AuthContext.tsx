@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useCallback, type ReactNode } from "react";
 
-export type UserRole = "investor" | "developer" | "vendor";
+export type UserRole = "investor" | "developer" | "vendor" | "agent";
 
 export interface MockUser {
   id: string;
@@ -15,6 +15,7 @@ const MOCK_USERS: Record<UserRole, MockUser> = {
   investor: { id: "inv-1", name: "Carlos Méndez", email: "carlos@investor.com", role: "investor" },
   developer: { id: "dev-1", name: "María López", email: "maria@developer.com", role: "developer", company: "Grupo Inmobiliario Sur" },
   vendor: { id: "ven-1", name: "Alejandro Ruiz", email: "alejandro@legalfirm.com", role: "vendor", company: "Ruiz & Asociados Legal" },
+  agent: { id: "agt-1", name: "Sofía Torres", email: "sofia@agentpro.com", role: "agent", company: "Torres Capital Partners" },
 };
 
 interface AuthContextType {

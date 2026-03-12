@@ -25,6 +25,10 @@ import VendorAnalytics from "./pages/vendor/VendorAnalytics";
 import VendorProfileSetup from "./pages/vendor/VendorProfileSetup";
 import MessagingHub from "./pages/vendor/MessagingHub";
 import MessageThread from "./pages/vendor/MessageThread";
+import AgentLayout from "./pages/agent/AgentLayout";
+import AgentDashboard from "./pages/agent/AgentDashboard";
+import AgentAnalytics from "./pages/agent/AgentAnalytics";
+import AgentProfileSetup from "./pages/agent/AgentProfileSetup";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -62,6 +66,15 @@ const App = () => (
               <Route path="messages/:id" element={<MessageThread />} />
               <Route path="analytics" element={<VendorAnalytics />} />
               <Route path="profile" element={<VendorProfileSetup />} />
+            </Route>
+
+            {/* Agent Portal */}
+            <Route path="/agent" element={<ProtectedRoute allowedRoles={["agent"]}><AgentLayout /></ProtectedRoute>}>
+              <Route index element={<AgentDashboard />} />
+              <Route path="analytics" element={<AgentAnalytics />} />
+              <Route path="messages" element={<MessagingHub />} />
+              <Route path="messages/:id" element={<MessageThread />} />
+              <Route path="profile" element={<AgentProfileSetup />} />
             </Route>
 
             <Route path="*" element={<NotFound />} />

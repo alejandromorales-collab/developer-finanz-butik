@@ -44,12 +44,12 @@ const Navbar = () => {
               {item.label}
             </Link>
           ))}
-          {isAuthenticated && user?.role === "developer" && (
+          {isAuthenticated && (user?.role === "developer" || user?.role === "vendor" || user?.role === "agent") && (
             <Link
-              to="/developer"
+              to={`/${user.role}`}
               className={cn(
                 "rounded-full px-4 py-1.5 text-sm font-medium transition-colors",
-                location.pathname.startsWith("/developer")
+                location.pathname.startsWith(`/${user.role}`)
                   ? "bg-primary text-primary-foreground"
                   : "text-muted-foreground hover:text-foreground"
               )}
