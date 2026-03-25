@@ -51,13 +51,10 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:gap-4"
+          className="flex w-full sm:w-auto"
         >
           <Button size="lg" className="w-full gap-2 sm:w-auto">
             Explorar oportunidades <ArrowRight size={18} />
-          </Button>
-          <Button size="lg" variant="outline" className="w-full border-white/20 text-white hover:bg-white/10 hover:text-white sm:w-auto">
-            Cómo funciona
           </Button>
         </motion.div>
       </div>
