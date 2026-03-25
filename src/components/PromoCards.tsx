@@ -20,8 +20,8 @@ const promos = [
 
 const PromoCards = () => {
   return (
-    <section className="border-b bg-card py-6">
-      <div className="container grid gap-4 sm:grid-cols-2">
+    <section className="border-b bg-card py-4 sm:py-6">
+      <div className="container grid gap-3 px-4 sm:grid-cols-2 sm:gap-4 sm:px-6">
         {promos.map((promo, i) => (
           <motion.a
             key={i}
@@ -30,16 +30,16 @@ const PromoCards = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: i * 0.1 }}
-            className="group flex items-center gap-4 rounded-lg border bg-background p-5 transition-shadow hover:shadow-md"
+            className="group flex items-center gap-3 rounded-lg border bg-background p-4 transition-shadow hover:shadow-md sm:gap-4 sm:p-5"
           >
-            <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-lg ${promo.bg}`}>
-              <promo.icon size={24} className={promo.color} weight="duotone" />
+            <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg sm:h-12 sm:w-12 ${promo.bg}`}>
+              <promo.icon size={20} className={`${promo.color} sm:!h-6 sm:!w-6`} weight="duotone" />
             </div>
-            <div className="flex-1">
-              <p className="font-heading text-sm font-bold text-foreground">{promo.title}</p>
-              <p className="mt-0.5 text-xs text-muted-foreground">{promo.description}</p>
+            <div className="min-w-0 flex-1">
+              <p className="font-heading text-xs font-bold text-foreground sm:text-sm">{promo.title}</p>
+              <p className="mt-0.5 hidden text-xs text-muted-foreground sm:block">{promo.description}</p>
             </div>
-            <ArrowRight size={18} className="shrink-0 text-muted-foreground transition-transform group-hover:translate-x-1" />
+            <ArrowRight size={16} className="shrink-0 text-muted-foreground transition-transform group-hover:translate-x-1 sm:h-[18px] sm:w-[18px]" />
           </motion.a>
         ))}
       </div>

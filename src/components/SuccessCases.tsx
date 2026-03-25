@@ -21,36 +21,39 @@ const SuccessCases = () => {
     : mockProjects.filter((p) => p.category === activeFilter);
 
   return (
-    <section className="py-16 lg:py-24">
-      <div className="container">
-        <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+    <section className="py-12 sm:py-16 lg:py-24">
+      <div className="container px-4 sm:px-6">
+        <div className="mb-8 flex flex-col gap-4 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h2 className="text-3xl font-extrabold tracking-tight text-foreground lg:text-4xl">
+            <h2 className="text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl lg:text-4xl">
               Success Cases
             </h2>
-            <p className="mt-2 text-muted-foreground">
+            <p className="mt-1.5 text-sm text-muted-foreground sm:mt-2 sm:text-base">
               Explora proyectos históricos y sus resultados de inversión.
             </p>
           </div>
-          <div className="flex gap-1 rounded-full border bg-muted p-1">
-            {filters.map((f) => (
-              <button
-                key={f.value}
-                onClick={() => setActiveFilter(f.value)}
-                className={cn(
-                  "rounded-full px-4 py-1.5 text-sm font-medium transition-colors",
-                  activeFilter === f.value
-                    ? "bg-primary text-primary-foreground shadow-sm"
-                    : "text-muted-foreground hover:text-foreground"
-                )}
-              >
-                {f.label}
-              </button>
-            ))}
+          {/* Scrollable filters on mobile */}
+          <div className="-mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
+            <div className="flex w-max gap-1 rounded-full border bg-muted p-1 sm:w-auto">
+              {filters.map((f) => (
+                <button
+                  key={f.value}
+                  onClick={() => setActiveFilter(f.value)}
+                  className={cn(
+                    "whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-medium transition-colors sm:px-4 sm:text-sm",
+                    activeFilter === f.value
+                      ? "bg-primary text-primary-foreground shadow-sm"
+                      : "text-muted-foreground hover:text-foreground"
+                  )}
+                >
+                  {f.label}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
           {filtered.map((project, i) => (
             <motion.div
               key={project.id}

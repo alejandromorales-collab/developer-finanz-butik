@@ -9,9 +9,9 @@ const stats = [
 
 const SocialProof = () => {
   return (
-    <section className="border-y bg-card py-12">
-      <div className="container">
-        <div className="grid grid-cols-2 gap-8 lg:grid-cols-4">
+    <section className="border-y bg-card py-8 sm:py-12">
+      <div className="container px-4 sm:px-6">
+        <div className="grid grid-cols-2 gap-6 sm:gap-8 lg:grid-cols-4">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
@@ -21,10 +21,10 @@ const SocialProof = () => {
               transition={{ duration: 0.4, delay: i * 0.1 }}
               className="text-center"
             >
-              <p className="font-heading text-3xl font-extrabold text-primary lg:text-4xl">
+              <p className="font-heading text-2xl font-extrabold text-primary sm:text-3xl lg:text-4xl">
                 {stat.value}
               </p>
-              <p className="mt-1 text-sm text-muted-foreground">
+              <p className="mt-1 text-xs text-muted-foreground sm:text-sm">
                 {stat.label}
               </p>
             </motion.div>

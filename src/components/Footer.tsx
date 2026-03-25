@@ -7,11 +7,11 @@ const footerLinks = {
 
 const Footer = () => {
   return (
-    <footer className="border-t bg-foreground py-12 text-white/60">
-      <div className="container">
+    <footer className="border-t bg-foreground py-10 text-white/60 sm:py-12">
+      <div className="container px-4 sm:px-6">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
           {/* Brand */}
-          <div className="lg:col-span-1">
+          <div className="sm:col-span-2 lg:col-span-1">
             <div className="flex items-center gap-2">
               <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary">
                 <span className="text-sm font-bold text-primary-foreground">FB</span>
@@ -20,7 +20,7 @@ const Footer = () => {
                 Finanz Butik<sup className="text-[10px] text-white/40">®</sup>
               </span>
             </div>
-            <p className="mt-3 text-sm leading-relaxed">
+            <p className="mt-3 max-w-xs text-sm leading-relaxed">
               Plataforma de inversión inmobiliaria curada para inversionistas exigentes.
             </p>
           </div>
@@ -42,7 +42,7 @@ const Footer = () => {
           ))}
         </div>
 
-        <div className="mt-10 border-t border-white/10 pt-6 text-center text-xs">
+        <div className="mt-8 border-t border-white/10 pt-6 text-center text-xs sm:mt-10">
           © {new Date().getFullYear()} Finanz Butik. Todos los derechos reservados.
         </div>
       </div>

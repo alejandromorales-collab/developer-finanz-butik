@@ -17,23 +17,23 @@ const vendors = [
 
 const FeaturedVendors = () => {
   return (
-    <section className="border-t py-16 lg:py-20">
-      <div className="container">
+    <section className="border-t py-12 sm:py-16 lg:py-20">
+      <div className="container px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-10 text-center"
+          className="mb-8 text-center sm:mb-10"
         >
-          <h2 className="font-heading text-3xl font-extrabold tracking-tight text-foreground lg:text-4xl">
+          <h2 className="font-heading text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl lg:text-4xl">
             Featured Vendors
           </h2>
-          <p className="mx-auto mt-2 max-w-lg text-muted-foreground">
+          <p className="mx-auto mt-2 max-w-lg text-sm text-muted-foreground sm:text-base">
             Profesionales verificados que respaldan cada inversión con servicios de primer nivel.
           </p>
         </motion.div>
 
-        <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-6 lg:gap-x-10">
+        <div className="grid grid-cols-3 items-center justify-items-center gap-6 sm:grid-cols-6 sm:gap-8">
           {vendors.map((vendor, i) => (
             <motion.div
               key={vendor.name}
@@ -46,7 +46,7 @@ const FeaturedVendors = () => {
               <img
                 src={vendor.logo}
                 alt={vendor.name}
-                className="h-32 w-auto object-contain opacity-40 grayscale transition-all hover:opacity-80 hover:grayscale-0 lg:h-40"
+                className="h-16 w-auto object-contain opacity-40 grayscale transition-all hover:opacity-80 hover:grayscale-0 sm:h-24 lg:h-32 xl:h-40"
                 loading="lazy"
               />
             </motion.div>
