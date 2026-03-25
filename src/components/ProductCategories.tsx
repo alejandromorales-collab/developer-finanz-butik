@@ -2,9 +2,9 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "@phosphor-icons/react";
-import investPreview from "@/assets/invest-preview.jpg";
-import lendPreview from "@/assets/lend-preview.jpg";
-import buyPreview from "@/assets/buy-preview.jpg";
+import cashImg from "@/assets/category-cash.jpg";
+import lendImg from "@/assets/category-lend.jpg";
+import buyImg from "@/assets/category-buy.jpg";
 import { cn } from "@/lib/utils";
 
 const categories = [
@@ -13,21 +13,21 @@ const categories = [
     title: "Rendimientos líquidos",
     description: "Genera retornos atractivos con liquidez inmediata. Ideal para capital de corto plazo con acceso a fondos cuando los necesites.",
     cta: "Explorar Cash",
-    image: investPreview,
+    image: cashImg,
   },
   {
     tag: "LEND",
     title: "Préstamos respaldados",
     description: "Presta capital a proyectos inmobiliarios verificados con tasas fijas y garantías reales sobre los activos subyacentes.",
     cta: "Explorar Lend",
-    image: lendPreview,
+    image: lendImg,
   },
   {
     tag: "BUY",
     title: "Adquisición directa",
     description: "Invierte directamente en propiedades de alto valor con potencial de apreciación y rentas recurrentes.",
     cta: "Explorar Buy",
-    image: buyPreview,
+    image: buyImg,
   },
 ];
 
