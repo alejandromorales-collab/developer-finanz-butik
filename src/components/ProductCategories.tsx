@@ -86,7 +86,7 @@ const ProductCategories = () => {
               <img
                 src={categories[active].image}
                 alt={categories[active].title}
-                className="h-full w-full object-cover"
+                className="aspect-[16/10] w-full object-cover md:aspect-[16/9] md:max-h-[280px] lg:max-h-none lg:aspect-auto"
                 loading="lazy"
                 width={800}
                 height={600}

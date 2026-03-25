@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import bakerImg from "@/assets/vendors/baker-mckenzie.png";
 import kpmgImg from "@/assets/vendors/kpmg.png";
@@ -15,7 +16,44 @@ const vendors = [
   { name: "Cushman & Wakefield", logo: cushmanImg },
 ];
 
+// Duplicate for seamless loop
+const allVendors = [...vendors, ...vendors];
+
 const FeaturedVendors = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    let animationId: number;
+    let offset = 0;
+    const speed = 0.5; // px per frame
+
+    const animate = () => {
+      offset += speed;
+      // Reset when first set scrolls out
+      const halfWidth = el.scrollWidth / 2;
+      if (offset >= halfWidth) offset = 0;
+      el.style.transform = `translateX(-${offset}px)`;
+      animationId = requestAnimationFrame(animate);
+    };
+
+    animationId = requestAnimationFrame(animate);
+
+    const pause = () => cancelAnimationFrame(animationId);
+    const resume = () => { animationId = requestAnimationFrame(animate); };
+
+    el.addEventListener("mouseenter", pause);
+    el.addEventListener("mouseleave", resume);
+
+    return () => {
+      cancelAnimationFrame(animationId);
+      el.removeEventListener("mouseenter", pause);
+      el.removeEventListener("mouseleave", resume);
+    };
+  }, []);
+
   return (
     <section className="border-t py-12 sm:py-16 lg:py-20">
       <div className="container px-4 sm:px-6">
@@ -32,24 +70,23 @@ const FeaturedVendors = () => {
             Profesionales verificados que respaldan cada inversión con servicios de primer nivel.
           </p>
         </motion.div>
+      </div>
 
-        <div className="grid grid-cols-3 items-center justify-items-center gap-6 sm:grid-cols-6 sm:gap-8">
-          {vendors.map((vendor, i) => (
-            <motion.div
-              key={vendor.name}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="flex items-center justify-center"
+      {/* Full-width carousel */}
+      <div className="overflow-hidden">
+        <div ref={scrollRef} className="flex items-center will-change-transform">
+          {allVendors.map((vendor, i) => (
+            <div
+              key={`${vendor.name}-${i}`}
+              className="flex shrink-0 items-center justify-center px-6 sm:px-10 lg:px-14"
             >
               <img
                 src={vendor.logo}
                 alt={vendor.name}
-                className="h-16 w-auto object-contain opacity-40 grayscale transition-all hover:opacity-80 hover:grayscale-0 sm:h-24 lg:h-32 xl:h-40"
+                className="h-24 w-auto object-contain opacity-40 grayscale transition-all hover:opacity-80 hover:grayscale-0 sm:h-32 lg:h-40"
                 loading="lazy"
               />
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
