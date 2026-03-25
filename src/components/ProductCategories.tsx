@@ -27,7 +27,7 @@ const categories = [
     title: "Adquisición directa",
     description: "Invierte directamente en propiedades de alto valor con potencial de apreciación y rentas recurrentes.",
     cta: "Explorar Buy",
-    image: buyPreview,
+    image: buyImg,
   },
 ];
 
