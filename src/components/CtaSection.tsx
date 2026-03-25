@@ -18,14 +18,11 @@ const CtaSection = () => {
           <p className="mx-auto mt-3 max-w-lg text-sm text-white/60 leading-relaxed sm:mt-4 sm:text-base">
             Crea tu cuenta en minutos y accede a oportunidades de inversión curadas con soporte legal y rendimientos atractivos.
           </p>
-          <div className="mt-6 flex flex-col justify-center gap-3 sm:mt-8 sm:flex-row sm:gap-4">
+          <div className="mt-6 flex justify-center sm:mt-8">
             <Button size="lg" className="w-full gap-2 sm:w-auto" asChild>
               <Link to="/login">
                 Crear cuenta <ArrowRight size={18} />
               </Link>
-            </Button>
-            <Button size="lg" variant="outline" className="w-full border-white/20 text-white hover:bg-white/10 hover:text-white sm:w-auto">
-              Conocer más
             </Button>
           </div>
         </motion.div>
