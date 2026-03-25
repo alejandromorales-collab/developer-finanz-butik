@@ -23,7 +23,7 @@ const SuccessCases = () => {
   return (
     <section className="py-12 sm:py-16 lg:py-24">
       <div className="container px-4 sm:px-6">
-        <div className="mb-8 flex flex-col gap-4 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
+        <div className="mb-8 flex flex-col gap-4 sm:mb-10">
           <div>
             <h2 className="text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl lg:text-4xl">
               Success Cases
@@ -32,24 +32,21 @@ const SuccessCases = () => {
               Explora proyectos históricos y sus resultados de inversión.
             </p>
           </div>
-          {/* Scrollable filters on mobile */}
-          <div className="-mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
-            <div className="flex w-max gap-1 rounded-full border bg-muted p-1 sm:w-auto">
-              {filters.map((f) => (
-                <button
-                  key={f.value}
-                  onClick={() => setActiveFilter(f.value)}
-                  className={cn(
-                    "whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-medium transition-colors sm:px-4 sm:text-sm",
-                    activeFilter === f.value
-                      ? "bg-primary text-primary-foreground shadow-sm"
-                      : "text-muted-foreground hover:text-foreground"
-                  )}
-                >
-                  {f.label}
-                </button>
-              ))}
-            </div>
+          <div className="flex flex-wrap gap-2">
+            {filters.map((f) => (
+              <button
+                key={f.value}
+                onClick={() => setActiveFilter(f.value)}
+                className={cn(
+                  "rounded-full px-4 py-1.5 text-sm font-medium transition-colors",
+                  activeFilter === f.value
+                    ? "bg-primary text-primary-foreground shadow-sm"
+                    : "border bg-muted text-muted-foreground hover:text-foreground"
+                )}
+              >
+                {f.label}
+              </button>
+            ))}
           </div>
         </div>
 
