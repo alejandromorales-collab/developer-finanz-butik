@@ -46,7 +46,7 @@ const FeaturedVendors = () => {
               <img
                 src={vendor.logo}
                 alt={vendor.name}
-                className="h-20 w-auto object-contain opacity-40 grayscale transition-all hover:opacity-80 hover:grayscale-0 lg:h-24"
+                className="h-28 w-auto object-contain opacity-40 grayscale transition-all hover:opacity-80 hover:grayscale-0 lg:h-32"
                 loading="lazy"
               />
             </motion.div>
