@@ -71,14 +71,16 @@ const MessagingHub = () => {
             className="pl-9"
           />
         </div>
-        <Tabs value={filter} onValueChange={(v) => setFilter(v as typeof filter)}>
-          <TabsList>
-            <TabsTrigger value="all">All</TabsTrigger>
-            <TabsTrigger value="active">Active</TabsTrigger>
-            <TabsTrigger value="pending_response">Pending</TabsTrigger>
-            <TabsTrigger value="resolved">Resolved</TabsTrigger>
-          </TabsList>
-        </Tabs>
+        <div className="w-full overflow-x-auto">
+          <Tabs value={filter} onValueChange={(v) => setFilter(v as typeof filter)}>
+            <TabsList className="w-full sm:w-auto">
+              <TabsTrigger value="all" className="flex-1 sm:flex-none text-xs sm:text-sm">All</TabsTrigger>
+              <TabsTrigger value="active" className="flex-1 sm:flex-none text-xs sm:text-sm">Active</TabsTrigger>
+              <TabsTrigger value="pending_response" className="flex-1 sm:flex-none text-xs sm:text-sm">Pending</TabsTrigger>
+              <TabsTrigger value="resolved" className="flex-1 sm:flex-none text-xs sm:text-sm">Resolved</TabsTrigger>
+            </TabsList>
+          </Tabs>
+        </div>
       </div>
 
       {/* Inquiry List */}
