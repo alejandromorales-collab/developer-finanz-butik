@@ -2,9 +2,9 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "@phosphor-icons/react";
-import investPreview from "@/assets/invest-preview.jpg";
-import lendPreview from "@/assets/lend-preview.jpg";
-import buyPreview from "@/assets/buy-preview.jpg";
+import cashImg from "@/assets/category-cash.jpg";
+import lendImg from "@/assets/category-lend.jpg";
+import buyImg from "@/assets/category-buy.jpg";
 import { cn } from "@/lib/utils";
 
 const categories = [
