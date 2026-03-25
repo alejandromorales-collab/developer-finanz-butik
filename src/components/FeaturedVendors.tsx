@@ -33,7 +33,7 @@ const FeaturedVendors = () => {
           </p>
         </motion.div>
 
-        <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-8 lg:gap-x-16">
+        <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-6 lg:gap-x-10">
           {vendors.map((vendor, i) => (
             <motion.div
               key={vendor.name}
