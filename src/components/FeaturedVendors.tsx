@@ -33,7 +33,7 @@ const FeaturedVendors = () => {
           </p>
         </motion.div>
 
-        <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-8 lg:gap-x-16">
+        <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-6 lg:gap-x-10">
           {vendors.map((vendor, i) => (
             <motion.div
               key={vendor.name}
@@ -46,7 +46,7 @@ const FeaturedVendors = () => {
               <img
                 src={vendor.logo}
                 alt={vendor.name}
-                className="h-14 w-auto object-contain opacity-40 grayscale transition-all hover:opacity-80 hover:grayscale-0 lg:h-16"
+                className="h-20 w-auto object-contain opacity-40 grayscale transition-all hover:opacity-80 hover:grayscale-0 lg:h-24"
                 loading="lazy"
               />
             </motion.div>
