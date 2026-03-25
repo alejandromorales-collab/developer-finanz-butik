@@ -13,7 +13,7 @@ const categories = [
     title: "Rendimientos líquidos",
     description: "Genera retornos atractivos con liquidez inmediata. Ideal para capital de corto plazo con acceso a fondos cuando los necesites.",
     cta: "Explorar Cash",
-    image: investPreview,
+    image: cashImg,
   },
   {
     tag: "LEND",
