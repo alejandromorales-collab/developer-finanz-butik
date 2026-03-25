@@ -27,27 +27,31 @@ const MyProjects = () => (
 
     <div className="space-y-3">
       {mockProjects.map((p) => (
-        <div key={p.id} className="flex items-center gap-4 rounded-xl border border-border bg-card p-4">
-          <img src={p.thumbnailUrl} alt={p.title} className="h-16 w-24 rounded-lg object-cover" />
-          <div className="flex-1 min-w-0">
-            <h3 className="font-heading text-sm font-semibold text-foreground truncate">{p.title}</h3>
-            <div className="mt-1 flex items-center gap-2">
-              <span className="text-xs text-muted-foreground capitalize">{p.category}</span>
-              <span className={`rounded-full px-2 py-0.5 text-[10px] font-medium ${statusBadge[p.status]}`}>
-                {p.status.replace("_", " ")}
-              </span>
+        <div key={p.id} className="rounded-xl border border-border bg-card p-3 sm:p-4">
+          <div className="flex gap-3 sm:gap-4">
+            <img src={p.thumbnailUrl} alt={p.title} className="h-14 w-20 shrink-0 rounded-lg object-cover sm:h-16 sm:w-24" />
+            <div className="min-w-0 flex-1">
+              <div className="flex items-start justify-between gap-2">
+                <h3 className="font-heading text-sm font-semibold text-foreground truncate">{p.title}</h3>
+                <div className="flex shrink-0 gap-1">
+                  <Button variant="ghost" size="icon" className="h-8 w-8" asChild>
+                    <Link to={`/project/${p.slug}`}><Eye size={16} /></Link>
+                  </Button>
+                  <Button variant="ghost" size="icon" className="h-8 w-8">
+                    <PencilSimple size={16} />
+                  </Button>
+                </div>
+              </div>
+              <div className="mt-1 flex flex-wrap items-center gap-1.5">
+                <span className="text-xs text-muted-foreground capitalize">{p.category}</span>
+                <span className={`rounded-full px-2 py-0.5 text-[10px] font-medium ${statusBadge[p.status]}`}>
+                  {p.status.replace("_", " ")}
+                </span>
+              </div>
+              <p className="mt-1 text-xs text-muted-foreground">
+                {p.annualInterestRateMin}% – {p.annualInterestRateMax}% · Min {new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(p.minInvestment)}
+              </p>
             </div>
-            <p className="mt-1 text-xs text-muted-foreground">
-              {p.annualInterestRateMin}% – {p.annualInterestRateMax}% annual · Min {new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(p.minInvestment)}
-            </p>
-          </div>
-          <div className="flex gap-2">
-            <Button variant="ghost" size="icon" asChild>
-              <Link to={`/project/${p.slug}`}><Eye size={18} /></Link>
-            </Button>
-            <Button variant="ghost" size="icon">
-              <PencilSimple size={18} />
-            </Button>
           </div>
         </div>
       ))}

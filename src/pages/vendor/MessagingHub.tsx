@@ -104,8 +104,8 @@ const MessagingHub = () => {
                 onClick={() => navigate(`/vendor/messages/${inq.id}`)}
               >
                 <CardContent className="p-4">
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex-1 min-w-0 space-y-1.5">
+                  <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
+                    <div className="min-w-0 flex-1 space-y-1.5">
                       <div className="flex items-center gap-2">
                         {inq.unreadCount > 0 && (
                           <span className="h-2 w-2 rounded-full bg-primary shrink-0" />
@@ -114,7 +114,7 @@ const MessagingHub = () => {
                           {inq.subject}
                         </h3>
                       </div>
-                      <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                      <div className="flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground">
                         <span className="font-medium text-foreground/80">{inq.counterparty.name}</span>
                         {inq.counterparty.company && (
                           <>
@@ -123,11 +123,11 @@ const MessagingHub = () => {
                           </>
                         )}
                         <span>·</span>
-                        <span>{inq.serviceTitle}</span>
+                        <span className="truncate">{inq.serviceTitle}</span>
                       </div>
                       <p className="text-xs text-muted-foreground line-clamp-1">{inq.lastMessagePreview}</p>
                     </div>
-                    <div className="flex flex-col items-end gap-2 shrink-0">
+                    <div className="flex items-center gap-2 sm:flex-col sm:items-end sm:gap-2 shrink-0">
                       <Badge variant="outline" className={`text-[10px] ${sc.color}`}>
                         <StatusIcon size={12} weight="fill" className="mr-1" />
                         {sc.label}
