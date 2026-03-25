@@ -1,17 +1,23 @@
 import { motion } from "framer-motion";
+import bakerImg from "@/assets/vendors/baker-mckenzie.png";
+import kpmgImg from "@/assets/vendors/kpmg.png";
+import deloitteImg from "@/assets/vendors/deloitte.png";
+import pwcImg from "@/assets/vendors/pwc.png";
+import hoganImg from "@/assets/vendors/hogan-lovells.png";
+import cushmanImg from "@/assets/vendors/cushman-wakefield.png";
 
 const vendors = [
-  { name: "Baker McKenzie", initials: "BM" },
-  { name: "KPMG", initials: "KP" },
-  { name: "Deloitte Legal", initials: "DL" },
-  { name: "PwC Advisory", initials: "PC" },
-  { name: "Hogan Lovells", initials: "HL" },
-  { name: "Cushman & Wakefield", initials: "CW" },
+  { name: "Baker McKenzie", logo: bakerImg },
+  { name: "KPMG", logo: kpmgImg },
+  { name: "Deloitte", logo: deloitteImg },
+  { name: "PwC", logo: pwcImg },
+  { name: "Hogan Lovells", logo: hoganImg },
+  { name: "Cushman & Wakefield", logo: cushmanImg },
 ];
 
 const FeaturedVendors = () => {
   return (
-    <section className="py-16 lg:py-20">
+    <section className="border-t py-16 lg:py-20">
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -27,24 +33,22 @@ const FeaturedVendors = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-3 gap-6 sm:grid-cols-6">
+        <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-8 lg:gap-x-16">
           {vendors.map((vendor, i) => (
             <motion.div
               key={vendor.name}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: i * 0.05 }}
-              className="group flex flex-col items-center gap-3"
+              transition={{ duration: 0.4, delay: i * 0.08 }}
+              className="flex items-center justify-center"
             >
-              <div className="flex h-20 w-20 items-center justify-center rounded-xl border bg-card transition-shadow group-hover:shadow-md">
-                <span className="font-heading text-xl font-extrabold text-muted-foreground/60 grayscale">
-                  {vendor.initials}
-                </span>
-              </div>
-              <span className="text-center text-xs font-medium text-muted-foreground">
-                {vendor.name}
-              </span>
+              <img
+                src={vendor.logo}
+                alt={vendor.name}
+                className="h-8 w-auto object-contain opacity-40 grayscale transition-all hover:opacity-80 hover:grayscale-0 lg:h-10"
+                loading="lazy"
+              />
             </motion.div>
           ))}
         </div>
