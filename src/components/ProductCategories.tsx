@@ -20,7 +20,7 @@ const categories = [
     title: "Préstamos respaldados",
     description: "Presta capital a proyectos inmobiliarios verificados con tasas fijas y garantías reales sobre los activos subyacentes.",
     cta: "Explorar Lend",
-    image: lendPreview,
+    image: lendImg,
   },
   {
     tag: "BUY",
