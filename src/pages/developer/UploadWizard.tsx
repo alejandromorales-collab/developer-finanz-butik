@@ -94,16 +94,17 @@ const UploadWizard = () => {
             </div>
             <div className="space-y-2">
               <Label>Category</Label>
-              <select
-                value={form.category}
-                onChange={(e) => update("category", e.target.value)}
-                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-              >
-                <option value="cash">Cash</option>
-                <option value="lend">Lend</option>
-                <option value="buy">Buy</option>
-                <option value="develop">Develop</option>
-              </select>
+              <Select value={form.category} onValueChange={(v) => update("category", v)}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select a category" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="cash">Cash</SelectItem>
+                  <SelectItem value="lend">Lend</SelectItem>
+                  <SelectItem value="buy">Buy</SelectItem>
+                  <SelectItem value="develop">Develop</SelectItem>
+                </SelectContent>
+              </Select>
               <p className="text-xs text-muted-foreground">
                 {categoryDescriptions[form.category]}
               </p>
