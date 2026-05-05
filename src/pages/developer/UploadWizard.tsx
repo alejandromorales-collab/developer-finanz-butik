@@ -175,7 +175,7 @@ const UploadWizard = () => {
                 ["Title", form.title || "—"],
                 ["Category", form.category],
                 ["Min Investment", form.minInvestment ? `$${form.minInvestment}` : "—"],
-                ["Interest Range", form.interestMin && form.interestMax ? `${form.interestMin}% – ${form.interestMax}%` : "—"],
+                ["Target Return", form.interestMin && form.interestMax ? `${form.interestMin}% – ${form.interestMax}%` : "—"],
                 ["Term", form.termRange || "—"],
               ].map(([k, v]) => (
                 <div key={k} className="flex justify-between border-b border-border pb-2">
