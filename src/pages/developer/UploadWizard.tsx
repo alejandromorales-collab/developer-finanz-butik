@@ -145,23 +145,58 @@ const UploadWizard = () => {
         )}
 
         {step === 2 && (
-          <div className="space-y-4">
+          <div className="space-y-6">
+            {/* Thumbnail */}
             <div className="space-y-2">
-              <Label>Thumbnail Image</Label>
-              <div className="flex h-32 items-center justify-center rounded-lg border-2 border-dashed border-border bg-muted/30 text-sm text-muted-foreground cursor-pointer hover:border-primary/50">
-                Click or drag to upload
+              <div className="flex items-baseline justify-between">
+                <Label>Thumbnail Image</Label>
+                <span className="text-[11px] text-muted-foreground">1 image required</span>
+              </div>
+              <div className="flex flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed border-border bg-muted/30 px-4 py-6 text-center cursor-pointer hover:border-primary/50 transition-colors">
+                <ImageIcon size={28} className="text-muted-foreground/70" />
+                <p className="text-sm text-foreground font-medium">Click or drag to upload</p>
+                <p className="text-xs text-muted-foreground">
+                  Recommended size: <span className="text-foreground font-medium">1200 × 800 px</span> (3:2)
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  Format: <span className="text-foreground font-medium">JPG, PNG, WEBP</span> · Max <span className="text-foreground font-medium">5 MB</span>
+                </p>
               </div>
             </div>
+
+            {/* Gallery */}
             <div className="space-y-2">
-              <Label>Project Gallery</Label>
-              <div className="flex h-24 items-center justify-center rounded-lg border-2 border-dashed border-border bg-muted/30 text-sm text-muted-foreground cursor-pointer hover:border-primary/50">
-                Upload multiple images
+              <div className="flex items-baseline justify-between">
+                <Label>Project Gallery</Label>
+                <span className="text-[11px] text-muted-foreground">Up to 10 images</span>
+              </div>
+              <div className="flex flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed border-border bg-muted/30 px-4 py-6 text-center cursor-pointer hover:border-primary/50 transition-colors">
+                <Images size={28} className="text-muted-foreground/70" />
+                <p className="text-sm text-foreground font-medium">Upload multiple images</p>
+                <p className="text-xs text-muted-foreground">
+                  Recommended size: <span className="text-foreground font-medium">1600 × 1067 px</span> (3:2)
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  Format: <span className="text-foreground font-medium">JPG, PNG, WEBP</span> · Max <span className="text-foreground font-medium">5 MB</span> each
+                </p>
               </div>
             </div>
+
+            {/* Documents */}
             <div className="space-y-2">
-              <Label>Documents (PDF)</Label>
-              <div className="flex h-20 items-center justify-center rounded-lg border-2 border-dashed border-border bg-muted/30 text-sm text-muted-foreground cursor-pointer hover:border-primary/50">
-                Upload legal documents
+              <div className="flex items-baseline justify-between">
+                <Label>Documents</Label>
+                <span className="text-[11px] text-muted-foreground">Up to 5 files</span>
+              </div>
+              <div className="flex flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed border-border bg-muted/30 px-4 py-6 text-center cursor-pointer hover:border-primary/50 transition-colors">
+                <FilePdf size={28} className="text-muted-foreground/70" />
+                <p className="text-sm text-foreground font-medium">Upload legal documents</p>
+                <p className="text-xs text-muted-foreground">
+                  Format: <span className="text-foreground font-medium">PDF</span> · Max <span className="text-foreground font-medium">10 MB</span> per file
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  Suggested: prospectus, term sheet, legal opinion
+                </p>
               </div>
             </div>
           </div>
